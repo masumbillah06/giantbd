@@ -30,7 +30,7 @@ export function Sidebar({
   const initial = user.name.trim().charAt(0).toUpperCase() || "?";
 
   return (
-    <aside className="flex h-screen w-[272px] flex-col bg-white text-slate-900">
+    <aside className="flex h-screen w-[272px] flex-col bg-slate-100 text-slate-900">
       {/* Header — fixed */}
       <div className="shrink-0 border-b border-white/[0.07] px-5 py-4">
         <Link

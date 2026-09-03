@@ -36,13 +36,13 @@ export function SidebarNavItem({ item, pathname, level = 0 }: SidebarNavItemProp
   const paddingLeft = 8 + level * 2;
 
   const rowClasses = cx(
-    "group flex w-full items-center gap-2.5 rounded-md py-3 text-sm transition-colors",
+    "group flex w-full items-center gap-2.5 rounded-md py-2 text-sm transition-colors",
     "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A33D]/70",
     isExactActive
       ? "bg-[#E8A33D]/12 text-slate-900 font-medium"
       : isActiveBranch
-        ? "text-slate-900 font-medium hover:bg-white/[0.04]"
-        : "text-slate-900 hover:bg-white/[0.04] hover:text-slate-900"
+        ? "text-slate-900 font-medium hover:bg-black/[0.04]"
+        : "text-slate-900 hover:bg-black/[0.04] hover:text-slate-900"
   );
 
   if (!hasChildren) {
@@ -54,14 +54,9 @@ export function SidebarNavItem({ item, pathname, level = 0 }: SidebarNavItemProp
           className={rowClasses}
           style={{ paddingLeft, paddingRight: 12 }}
         >
-          <div className="bg-amber-50 rounded-md p-1">
-            {Icon && <Icon size={20} strokeWidth={2} className="shrink-0" />}
+          <div className="bg-white border border-slate-300 rounded-xl p-1">
+            {Icon && <Icon color="#476ab8" size={20} strokeWidth={2} className="shrink-0" />}
           </div>
-          {level === 0 && Icon && (
-            <div className="bg-amber-50 rounded-md p-1">
-              <Icon size={20} strokeWidth={2} className="shrink-0" />
-            </div>
-          )}
           <span className="truncate">{item.label}</span>
         </Link>
       </div>
@@ -78,8 +73,8 @@ export function SidebarNavItem({ item, pathname, level = 0 }: SidebarNavItemProp
         style={{ paddingLeft, paddingRight: 12 }}
       >
         <span className="flex min-w-0 items-center gap-2.5">
-          <div className="bg-amber-50 rounded-md p-1">
-            {Icon && <Icon size={20} strokeWidth={2} className="shrink-0" />}
+          <div className="bg-white border border-slate-300 rounded-xl p-1">
+            {Icon && <Icon color="#476ab8" size={20} strokeWidth={2} className="shrink-0" />}
           </div>
           <span className="truncate">{item.label}</span>
         </span>
