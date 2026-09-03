@@ -58,7 +58,6 @@ export default function SearchDropdown({
     );
   }, [items, query]);
 
-
   function handleSelect(item: SearchItem) {
     setSelectedId(item.id);
     onSelect?.(item);
