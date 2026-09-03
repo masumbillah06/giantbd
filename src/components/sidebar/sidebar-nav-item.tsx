@@ -95,7 +95,7 @@ export function SidebarNavItem({ item, pathname, level = 0 }: SidebarNavItemProp
         <div className="overflow-hidden">
           <div
             className={cx(
-              "relative mt-0.5 space-y-0.5 border-0 border-white/[0.07]",
+              "relative mt-0.5 space-y-2.5 border-0 border-white/[0.07]",
               "ml-[var(--rail)]"
             )}
             style={{ ["--rail" as string]: `${paddingLeft + 4}px` }}
