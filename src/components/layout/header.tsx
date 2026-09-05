@@ -3,7 +3,7 @@ import SearchDropdown from "../ui/searchbar-drop/SearchDropdown";
 
 export default function Header() {
   return (
-    <header className="w-full h-14 bg-slate-300 border-b border-slate-500">
+    <header className="h-14 w-full shrink-0 bg-slate-300 border-b border-slate-500">
       <div className="flex items-center justify-between gap-x-3 h-full px-4">
         <div>
           <button><TextAlignJustify height={16} width={16} /></button>
