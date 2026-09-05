@@ -1,1 +1,53 @@
 @import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS — CSS custom properties
+   These mirror src/lib/theme.ts so both JS and CSS share
+   the same values. Edit theme.ts; keep these in sync.
+   ============================================================ */
+
+@layer base {
+  :root {
+    /* ── Brand ──────────────────────────────────────────── */
+    --color-brand-primary:     #F68B1E;   /* brand.primary     */
+    --color-brand-alt:         #E8A33D;   /* brand.primaryAlt  */
+    --color-icon-blue:         #476ab8;   /* brand.iconBlue    */
+
+    /* ── Surfaces ───────────────────────────────────────── */
+    --color-bg:                #f5f6fa;   /* surface.page      */
+    --color-surface:           #ffffff;   /* surface.card      */
+    --color-sidebar-bg:        #f8fafc;   /* surface.sidebar   */
+    --color-header-bg:         #cbd5e1;   /* surface.header    */
+    --color-footer-bg:         #ffffff;   /* surface.footer    */
+
+    /* ── Borders ────────────────────────────────────────── */
+    --color-border:            #e2e8f0;   /* border.default    */
+    --color-border-header:     #94a3b8;   /* border.header     */
+    --color-border-subtle:     rgba(255,255,255,0.07);
+
+    /* ── Text ───────────────────────────────────────────── */
+    --color-text:              #0f172a;   /* text.primary      */
+    --color-text-secondary:    #475569;   /* text.secondary    */
+    --color-text-muted:        #8891A3;   /* text.muted        */
+    --color-text-on-dark:      #E8EAF0;   /* text.onDark       */
+    --color-text-link:         #F68B1E;   /* text.link         */
+
+    /* ── Layout ─────────────────────────────────────────── */
+    --sidebar-width:           248px;
+    --header-height:           56px;
+
+    /* ── Radius ─────────────────────────────────────────── */
+    --radius-sm:               0.375rem;  /* 6px  */
+    --radius-md:               0.5rem;    /* 8px  */
+    --radius-lg:               0.75rem;   /* 12px */
+    --radius-full:             9999px;
+
+    /* ── Shadow ─────────────────────────────────────────── */
+    --shadow-card:             0 1px 4px 0 rgba(0,0,0,0.08);
+    --shadow-header:           0 1px 2px 0 rgba(0,0,0,0.06);
+
+    /* ── Transition ─────────────────────────────────────── */
+    --transition-fast:         150ms ease;
+    --transition-normal:       200ms ease-out;
+  }
+}

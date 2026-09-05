@@ -72,10 +72,10 @@ export default function SearchDropdown({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center gap-2 rounded-lg border border-indigo-300 bg-white px-3 py-2.5 text-left shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+        className="flex h-7 w-full items-center gap-2 rounded-lg border border-indigo-300 bg-white px-2 py-1 text-left shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
       >
         <span
-          className={`flex-1 truncate text-[15px] ${
+          className={`flex-1 truncate text-xs ${
             selectedItem ? "text-gray-800" : "text-gray-400"
           }`}
         >
