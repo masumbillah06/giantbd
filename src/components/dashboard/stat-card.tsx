@@ -1,3 +1,3 @@
-export * from "@/components/ui/stat-card";
-export { default } from "@/components/ui/stat-card";
+export * from "@/components/ui/dashboard/stat-card";
+export { default } from "@/components/ui/dashboard/stat-card";
 
