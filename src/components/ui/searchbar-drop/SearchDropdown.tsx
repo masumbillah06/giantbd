@@ -76,7 +76,7 @@ export default function SearchDropdown({
       >
         <span
           className={`flex-1 truncate text-xs ${
-            selectedItem ? "text-gray-800" : "text-gray-400"
+            selectedItem ? "text-gray-800" : "text-gray-700"
           }`}
         >
           {selectedItem ? selectedItem.path.join(" > ") : placeholder}
@@ -95,14 +95,14 @@ export default function SearchDropdown({
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={placeholder}
-                className="w-full text-[15px] text-gray-700 placeholder:text-gray-400 focus:outline-none"
+                className="w-full text-[15px] text-gray-700 placeholder:text-gray-700 focus:outline-none"
               />
             </div>
 
             {/* Results list */}
             <ul className="max-h-72 overflow-y-auto py-1 pr-1">
               {filtered.length === 0 && (
-                <li className="px-4 py-3 text-sm text-gray-400">No results found</li>
+                <li className="px-4 py-3 text-sm text-gray-700">No results found</li>
               )}
               {filtered.map((item) => {
                 const isSelected = item.id === selectedId;
@@ -111,16 +111,16 @@ export default function SearchDropdown({
                     <button
                       type="button"
                       onClick={() => handleSelect(item)}
-                      className={`block w-full px-4 py-2 text-left text-[14.5px] leading-6 text-gray-700 transition-colors hover:bg-gray-50 ${
+                      className={`block w-full px-4 py-2 text-left text-xs leading-6 text-gray-700 transition-colors hover:bg-gray-50 ${
                         isSelected ? "bg-indigo-50" : ""
                       }`}
                     >
                       {item.path.map((segment, i) => (
                         <span key={i}>
                           {i > 0 && (
-                            <span className="mx-1.5 text-gray-300">&gt;</span>
+                            <span className="mx-1.5 text-gray-800">&gt;</span>
                           )}
-                          <span className={i === 0 ? "text-gray-500" : ""}>
+                          <span className={i === 0 ? "text-gray-800" : ""}>
                             {segment}
                           </span>
                         </span>

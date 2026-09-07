@@ -35,7 +35,7 @@
     --color-border-subtle:     rgba(255,255,255,0.07);
 
     /* ── Text ───────────────────────────────────────────── */
-    --color-text:              #0f172a;   /* text.primary      */
+    --color-text:              #1a1a1a;   /* text.primary      */
     --color-text-secondary:    #475569;   /* text.secondary    */
     --color-text-muted:        #8891A3;   /* text.muted        */
     --color-text-on-dark:      #E8EAF0;   /* text.onDark       */

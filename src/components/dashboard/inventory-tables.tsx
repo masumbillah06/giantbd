@@ -1,6 +1,8 @@
 "use client";
 
 import { ClipboardList, Package, Truck, Printer } from "lucide-react";
+import { ActionButton } from "@/components/ui/buttons/action-button";
+import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
 
 type StockInRow = {
   id: number;
@@ -29,7 +31,7 @@ type RequisitionRow = {
   product: number;
   quantity: number;
   status: "Issued" | "Received";
-  actions: Array<"clipboard" | "package" | "truck" | "print">;
+  actions?: Array<"clipboard" | "package" | "truck" | "print">;
 };
 
 const stockInData: StockInRow[] = [
@@ -178,28 +180,7 @@ const requisitionData: RequisitionRow[] = [
   },
 ];
 
-function ActionIcon({ type }: { type: "clipboard" | "package" | "truck" | "print" }) {
-  const iconClass = "h-4 w-4 text-slate-500";
-  const icon =
-    type === "clipboard" ? (
-      <ClipboardList className={iconClass} />
-    ) : type === "package" ? (
-      <Package className={iconClass} />
-    ) : type === "truck" ? (
-      <Truck className={iconClass} />
-    ) : (
-      <Printer className={iconClass} />
-    );
 
-  return (
-    <button
-      type="button"
-      className="flex h-8 w-8 items-center justify-center rounded-md bg-slate-100 hover:bg-slate-200 transition-colors"
-    >
-      {icon}
-    </button>
-  );
-}
 
 function StatusPill({ status }: { status: "Issued" | "Received" }) {
   const styles =
@@ -357,11 +338,14 @@ export default function InventoryTables() {
                     <StatusPill status={row.status} />
                   </td>
                   <td className="whitespace-nowrap px-5 py-3.5 text-sm">
-                    <div className="flex gap-2">
-                      {row.actions.map((action, i) => (
-                        <ActionIcon key={i} type={action} />
-                      ))}
-                    </div>
+                    <ActionButtonGroup aria-label={`Actions for requisition ${row.id}`}>
+                      <ActionButton label="Packing List" icon={ClipboardList} />
+                      {row.status.toLowerCase() === "issued" && (
+                        <ActionButton label="Delivery Requisition" icon={Package} />
+                      )}
+                      <ActionButton label="Delivery Details" icon={Truck} />
+                      <ActionButton label="Print Details" icon={Printer} />
+                    </ActionButtonGroup>
                   </td>
                 </tr>
               ))}
