@@ -1,10 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function LoginPage() {
   const [forgotPassword, setForgotPassword] = useState(false);
+  // Tracks the mirrored border-radius — updated AFTER the slide transition finishes
+  const [mirrored, setMirrored] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
+
+  // When forgotPassword flips, wait for the 700ms slide to finish, then mirror
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMirrored(forgotPassword);
+    }, 700);
+    return () => clearTimeout(timer);
+  }, [forgotPassword]);
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-slate-100 p-6">
@@ -27,7 +40,11 @@ export default function LoginPage() {
               : "translate-x-0"
             }
           `}
-          style={{ borderRadius: "0 30% 30% 0 / 0 30% 30% 0" }}
+          style={{
+            borderRadius: mirrored
+              ? "30% 0 0 30% / 30% 0 0 30%"
+              : "0 30% 30% 0 / 0 30% 30% 0",
+          }}
         >
           <div className="text-center text-white px-10">
             <h1 className="text-4xl font-bold leading-snug">
@@ -110,7 +127,10 @@ export default function LoginPage() {
                 </button>
               </div>
 
-              <button className="w-full rounded-lg bg-[#476ab8] py-3 text-sm font-semibold text-white transition-colors hover:bg-[#3a5aa0]">
+              <button
+                onClick={() => router.push("/dashboard")}
+                className="w-full rounded-lg bg-[#476ab8] py-3 text-sm font-semibold text-white transition-colors hover:bg-[#3a5aa0]"
+              >
                 Login
               </button>
 

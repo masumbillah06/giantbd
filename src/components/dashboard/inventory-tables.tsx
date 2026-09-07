@@ -275,14 +275,14 @@ export default function InventoryTables() {
               {stockInData.map((row) => (
                 <tr key={row.id} className="border-b border-slate-100 last:border-b-0">
                   <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.id}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.productName}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.batchNo}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.material}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.received}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.productName}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.batchNo}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.material}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.received}</td>
                   <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.issued}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.blocked}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.shipable}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.pkgQty}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.blocked}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.shipable}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.pkgQty}</td>
                   <td className="whitespace-nowrap px-5 py-3.5 text-sm">
                     <a href="#" className="text-blue-500 underline">
                       View
@@ -291,7 +291,7 @@ export default function InventoryTables() {
                   <td className="whitespace-nowrap px-5 py-3.5 text-sm font-semibold text-emerald-500">
                     {row.agingZone}
                   </td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.agingChange}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.agingChange}</td>
                 </tr>
               ))}
             </tbody>
@@ -338,7 +338,7 @@ export default function InventoryTables() {
             <tbody>
               {requisitionData.map((row) => (
                 <tr key={row.id} className="border-b border-slate-100 last:border-b-0">
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.id}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.id}</td>
                   <td className="whitespace-nowrap px-5 py-3.5 text-sm">
                     <LabelCheck color={row.labelColor} />
                   </td>
@@ -347,12 +347,12 @@ export default function InventoryTables() {
                   <td className="whitespace-nowrap px-5 py-3.5 text-sm font-medium text-blue-500">
                     {row.reqType}
                   </td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.customer}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.reqDate}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.dueDate}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.requester}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.product}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.quantity}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.customer}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.reqDate}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.dueDate}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.requester}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.product}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.quantity}</td>
                   <td className="whitespace-nowrap px-5 py-3.5 text-sm">
                     <StatusPill status={row.status} />
                   </td>

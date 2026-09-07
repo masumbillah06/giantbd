@@ -34,7 +34,7 @@ export default function SearchDropdown({
   defaultSelectedId,
   onSelect,
 }: SearchDropdownProps) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState<string | undefined>(defaultSelectedId);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -67,12 +67,12 @@ export default function SearchDropdown({
   const selectedItem = items.find((i) => i.id === selectedId);
 
   return (
-    <div ref={containerRef} className="w-full max-w-sm font-sans">
+    <div ref={containerRef} className="w-full max-w-lg font-sans">
       {/* Top-level search field */}
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex h-7 w-full items-center gap-2 rounded-lg border border-indigo-300 bg-white px-2 py-1 text-left shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+        className="flex h-8 w-full items-center gap-2 rounded-md border border-indigo-800 bg-white px-2 py-1 text-left shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
       >
         <span
           className={`flex-1 truncate text-xs ${
