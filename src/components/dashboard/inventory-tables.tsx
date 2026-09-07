@@ -273,16 +273,16 @@ export default function InventoryTables() {
             </thead>
             <tbody>
               {stockInData.map((row) => (
-                <tr key={row.id} className="border-b border-slate-100 last:border-b-0">
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.id}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.productName}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.batchNo}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.material}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.received}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800">{row.issued}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.blocked}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.shipable}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.pkgQty}</td>
+                <tr key={row.id} className="group border-b border-slate-100 last:border-b-0 hover:bg-[#476ab8]">
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800 group-hover:text-white">{row.id}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.productName}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.batchNo}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.material}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.received}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-800 group-hover:text-white">{row.issued}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.blocked}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.shipable}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.pkgQty}</td>
                   <td className="whitespace-nowrap px-5 py-3.5 text-sm">
                     <a href="#" className="text-blue-500 underline">
                       View
@@ -291,7 +291,7 @@ export default function InventoryTables() {
                   <td className="whitespace-nowrap px-5 py-3.5 text-sm font-semibold text-emerald-500">
                     {row.agingZone}
                   </td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.agingChange}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.agingChange}</td>
                 </tr>
               ))}
             </tbody>
@@ -337,22 +337,22 @@ export default function InventoryTables() {
             </thead>
             <tbody>
               {requisitionData.map((row) => (
-                <tr key={row.id} className="border-b border-slate-100 last:border-b-0">
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.id}</td>
+                <tr key={row.id} className="group border-b border-slate-100 last:border-b-0 hover:bg-[#476ab8]">
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.id}</td>
                   <td className="whitespace-nowrap px-5 py-3.5 text-sm">
                     <LabelCheck color={row.labelColor} />
                   </td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-blue-500">{row.lcNo}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-blue-500">{row.poNo}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm font-medium text-blue-500">
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.lcNo}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.poNo}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm font-medium text-slate-700 group-hover:text-white">
                     {row.reqType}
                   </td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.customer}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.reqDate}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.dueDate}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.requester}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.product}</td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700">{row.quantity}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.customer}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.reqDate}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.dueDate}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.requester}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.product}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">{row.quantity}</td>
                   <td className="whitespace-nowrap px-5 py-3.5 text-sm">
                     <StatusPill status={row.status} />
                   </td>

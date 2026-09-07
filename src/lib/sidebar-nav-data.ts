@@ -21,11 +21,11 @@ export const sidebarNav: NavItem[] = [
     label: "Warehouse FG",
     icon: Warehouse,
     children: [
-      { label: "Dashboard", href: "/warehouse-fg/dashboard" },
-      { label: "Stock In", href: "/warehouse-fg/stock-in" },
-      { label: "Stock Out", href: "/warehouse-fg/stock-out" },
-      { label: "Out List", href: "/warehouse-fg/out-list" },
-      { label: "Batch List", href: "/warehouse-fg/batch-list" },
+      { label: "Dashboard", href: "/inventory/dashboard" },
+      { label: "Stock In", href: "/inventory/stock-in" },
+      { label: "Stock Out", href: "/inventory/stock-out" },
+      { label: "Out List", href: "/inventory/out-list" },
+      { label: "Batch List", href: "/inventory/batch-list" },
       {
         label: "FG Report",
         children: [

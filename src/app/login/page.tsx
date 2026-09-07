@@ -1,23 +1,12 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function LoginPage() {
   const [forgotPassword, setForgotPassword] = useState(false);
-  // Tracks the mirrored border-radius — updated AFTER the slide transition finishes
-  const [mirrored, setMirrored] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
-
-
-  // When forgotPassword flips, wait for the 700ms slide to finish, then mirror
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setMirrored(forgotPassword);
-    }, 700);
-    return () => clearTimeout(timer);
-  }, [forgotPassword]);
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-slate-100 p-6">
@@ -41,7 +30,7 @@ export default function LoginPage() {
             }
           `}
           style={{
-            borderRadius: mirrored
+            borderRadius: forgotPassword
               ? "30% 0 0 30% / 30% 0 0 30%"
               : "0 30% 30% 0 / 0 30% 30% 0",
           }}

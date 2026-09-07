@@ -20,7 +20,7 @@ export default function Dashboard() {
       <Sidebar user={user} />
       <div className="flex min-h-0 min-w-0 flex-1 flex-col">
         <Header />
-        <main className="min-h-0 flex-1 overflow-y-auto p-6">
+        <main className="min-h-0 flex-1 overflow-y-auto p-5">
           {/* <h1>Dashboard</h1> */}
           <div>
             <Breadcrumb />
