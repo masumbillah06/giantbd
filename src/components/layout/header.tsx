@@ -10,7 +10,7 @@ export default function Header() {
         </div>
         <div className="flex justify-center items-center gap-x-3">
           <div className="w-92">
-            <SearchDropdown  />
+            <SearchDropdown  /> 
           </div>
           <div>
             <button className="h-8 w-8 rounded-lg bg-slate-100 flex items-center justify-center">

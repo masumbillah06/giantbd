@@ -2,7 +2,7 @@ import InventoryTables from "@/components/dashboard/inventory-tables"
 import Footer from "@/components/layout/footer"
 import Header from "@/components/layout/header"
 import { Sidebar, type SidebarUser } from "@/components/sidebar/sidebar"
-import Breadcrumb from "@/components/ui/breadcrumb"
+import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb"
 import { ChartBarDefault } from "@/components/ui/dashboard/bar-chart"
 import { ChartPieDonut } from "@/components/ui/dashboard/donut-chart"
 import { ChartLineMultiple } from "@/components/ui/dashboard/line-chart"
@@ -23,7 +23,14 @@ export default function Dashboard() {
         <main className="min-h-0 flex-1 overflow-y-auto p-5">
           {/* <h1>Dashboard</h1> */}
           <div>
-            <Breadcrumb />
+            <Breadcrumb
+              title="Warehouse FG"
+              items={[
+                { label: "Warehouse FG", href: "/inventory/dashboard" },
+                { label: "Dashboard", href: "/inventory/dashboard" },
+              ]}
+            />
+
           </div>
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
             <StatCard title="Total Users" value={1000} unit="users" breakdown="0 Bat | 0 Mas | 0 Var" trend="down" />
