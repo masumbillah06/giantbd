@@ -26,23 +26,20 @@ export function SidebarNavItem({ item, pathname, level = 0 }: SidebarNavItemProp
   const isActiveBranch = branchIsActive(item, pathname);
   const isExactActive = item.href === pathname;
 
-  // Derive the default from the active branch without synchronously updating
-  // state in an effect; preserve any explicit choice made by the user.
   const [userOpen, setUserOpen] = useState<boolean | undefined>(undefined);
   const open = userOpen ?? isActiveBranch;
 
   const Icon = item.icon;
-  // Indent each nesting level; level 0 keeps the icon column aligned.
   const paddingLeft = 8 + level * 2;
 
   const rowClasses = cx(
-    "group flex w-full items-center gap-2.5 rounded-md py-2 text-sm transition-colors",
+    "group flex w-full items-center gap-2.5 rounded-xl py-2 text-sm transition-colors",
     "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A33D]/70",
     isExactActive
-      ? "bg-[#E8A33D]/12 text-slate-900 font-medium"
+      ? "bg-[#476ab8] text-white font-medium"
       : isActiveBranch
-        ? "text-slate-900 font-medium hover:bg-black/[0.04]"
-        : "text-slate-900 hover:bg-black/[0.04] hover:text-slate-900"
+        ? "bg-[#476ab8] font-medium text-white"
+        : "text-slate-900 hover:bg-black/[0.04]"
   );
 
   if (!hasChildren) {

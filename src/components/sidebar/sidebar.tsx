@@ -30,7 +30,7 @@ export function Sidebar({
   const initial = user.name.trim().charAt(0).toUpperCase() || "?";
 
   return (
-    <aside className="flex h-full min-h-0 w-[272px] flex-col bg-slate-50 text-slate-900">
+    <aside className="flex h-full min-h-0 w-72 shadow-md flex-col bg-slate-50 text-slate-900">
       {/* Header — fixed */}
       <div className="shrink-0 border-b border-white/[0.07] px-5 py-4">
         <Link
@@ -60,38 +60,40 @@ export function Sidebar({
       </nav>
 
       {/* Footer — fixed */}
-      <div className="shrink-0 border-t border-white/[0.07] px-4 py-3">
-        <div className="flex items-center gap-3">
-          {user.avatarUrl ? (
-            <Image
-              src={user.avatarUrl}
-              alt=""
-              width={36}
-              height={36}
-              className="h-9 w-9 shrink-0 rounded-full object-cover"
-            />
-          ) : (
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/[0.08] text-sm font-medium text-[#E8EAF0]">
-              {initial}
-            </span>
-          )}
+      <div className="shrink-0 border-t border-gray-300">
+        <div className="m-3 px-3 py-2 bg-[#476ab8] rounded-xl">
+          <div className="flex items-center gap-3">
+            {user.avatarUrl ? (
+              <Image
+                src={user.avatarUrl}
+                alt=""
+                width={36}
+                height={36}
+                className="h-9 w-9 shrink-0 rounded-full object-cover"
+              />
+            ) : (
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#6c84b9] text-sm font-medium text-white">
+                {initial}
+              </span>
+            )}
 
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-medium text-[#E8EAF0]">
-              {user.name}
-            </p>
-            <p className="truncate text-xs text-[#8891A3]">{user.email}</p>
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-sm font-medium text-white">
+                {user.name}
+              </p>
+              <p className="truncate text-xs text-white">{user.email}</p>
+            </div>
+
+            <button
+              type="button"
+              onClick={onLogout}
+              aria-label="Log out"
+              title="Log out"
+              className="shrink-0 rounded-md p-2 text-white transition-colors hover:bg-white/[0.06] hover:text-[#E8EAF0] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A33D]/70"
+            >
+              <LogOut size={17} strokeWidth={2} />
+            </button>
           </div>
-
-          <button
-            type="button"
-            onClick={onLogout}
-            aria-label="Log out"
-            title="Log out"
-            className="shrink-0 rounded-md p-2 text-[#AEB6C6] transition-colors hover:bg-white/[0.06] hover:text-[#E8EAF0] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A33D]/70"
-          >
-            <LogOut size={17} strokeWidth={2} />
-          </button>
         </div>
       </div>
     </aside>
