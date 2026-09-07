@@ -23,7 +23,7 @@ type SidebarProps = {
 export function Sidebar({
   user,
   onLogout,
-  logoSrc,
+  logoSrc = "/giantbdLogo.webp",
   logoHref = "/dashboard",
 }: SidebarProps) {
   const pathname = usePathname();
@@ -37,22 +37,13 @@ export function Sidebar({
           href={logoHref}
           className="flex items-center gap-2.5 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A33D]/70"
         >
-          {logoSrc ? (
-            <Image
-              src={logoSrc}
-              alt="Company logo"
-              width={32}
-              height={32}
-              className="h-8 w-8 shrink-0 rounded-md object-contain"
-            />
-          ) : (
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#E8A33D] text-sm font-semibold text-slate-900">
-              FG
-            </span>
-          )}
-          <span className="truncate text-[15px] font-semibold tracking-tight">
-            Warehouse FG
-          </span>
+          <Image
+            src={logoSrc}
+            alt="GiantBD logo"
+            width={32}
+            height={32}
+            className="shrink-0 rounded-md object-contain"
+          />
         </Link>
       </div>
 
