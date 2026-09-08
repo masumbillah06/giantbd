@@ -5,6 +5,7 @@ import { Sidebar, type SidebarUser } from "@/components/sidebar/sidebar"
 import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb"
 import NavCh from "@/components/ui/nav-child"
 import { useState } from "react";
+import Pagination from "@/components/ui/pagination";
 import { ClipboardList, Eye, Pencil, PenSquareIcon, Trash2 } from "lucide-react";
 import ReusableTable from "@/components/tables-1/ReusableTable";
 import { ActionButton } from "@/components/ui/buttons/action-button";
@@ -102,6 +103,8 @@ const columns: ColumnDef<UserRecord>[] = [
 
 export default function Dashboard() {
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 24; // replace with real total when API is wired up
 
   return (
     <div className="flex h-screen overflow-hidden bg-[var(--color-bg)] text-[var(--color-text)]">
@@ -143,6 +146,13 @@ export default function Dashboard() {
                 minWidth="1200px"
               />
             </div>
+          </div>
+          <div className="mt-4">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
           </div>
         </div>
         <Footer />
