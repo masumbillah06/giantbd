@@ -1,12 +1,24 @@
+"use client";
+
 import { Bell, ChevronDown, CircleUserRound, Moon, TextAlignJustify } from "lucide-react";
 import SearchDropdown from "../ui/searchbar-drop/SearchDropdown";
+import { useSidebar } from "@/components/sidebar/sidebar-context";
 
 export default function Header() {
+  const { toggleSidebar, isCollapsed } = useSidebar();
+
   return (
     <header className="h-16 w-full shrink-0 bg-white shadow border-slate-500">
       <div className="flex items-center justify-between gap-x-3 h-full px-4">
         <div>
-          <button><TextAlignJustify height={14} width={14} /></button>
+          <button
+            type="button"
+            onClick={toggleSidebar}
+            aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+            className="flex items-center justify-center p-2 rounded-lg text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#476ab8]"
+          >
+            <TextAlignJustify height={14} width={14} />
+          </button>
         </div>
         <div className="flex justify-center items-center gap-x-3">
           <div className="w-92">
