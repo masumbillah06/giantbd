@@ -73,11 +73,11 @@ export default function ReusableTable<T extends RowBase>({
   };
 
   return (
-    <div className="overflow-x-auto rounded-lg border bg-card">
+    <div className="overflow-x-auto rounded-2xl border bg-card">
       <table className="w-full border-collapse" style={{ minWidth }}>
         <thead className="bg-slate-100">
           <tr>
-            <th className="w-12 whitespace-nowrap border-b border-slate-100 px-5 py-3.5 text-left">
+            <th className="w-12 whitespace-nowrap border-b border-slate-100 px-5 py-2 text-left">
               <input
                 ref={headerCheckboxRef}
                 type="checkbox"
@@ -87,7 +87,7 @@ export default function ReusableTable<T extends RowBase>({
                 onChange={handleToggleAll}
               />
             </th>
-            <th className="whitespace-nowrap border-b border-slate-100 px-5 py-3.5 text-left text-xs font-bold text-slate-900">
+            <th className="whitespace-nowrap border-b border-slate-100 px-5 py-2 text-left text-xs font-bold text-slate-900">
               ID
             </th>
             {columns.map((column) => (
@@ -95,13 +95,13 @@ export default function ReusableTable<T extends RowBase>({
                 key={String(column.key)}
                 className={
                   column.headerClassName ??
-                  "whitespace-nowrap border-b border-slate-100 px-5 py-3.5 text-left text-xs font-bold text-slate-900"
+                  "whitespace-nowrap border-b border-slate-100 px-5 py-2 text-left text-xs font-bold text-slate-900"
                 }
               >
                 {column.label}
               </th>
             ))}
-            <th className="whitespace-nowrap border-b border-slate-100 px-5 py-3.5 text-left text-xs font-bold text-slate-900">
+            <th className="whitespace-nowrap border-b border-slate-100 px-5 py-2 text-left text-xs font-bold text-slate-900">
               {actionsLabel}
             </th>
           </tr>
@@ -124,7 +124,7 @@ export default function ReusableTable<T extends RowBase>({
                   key={row.id}
                   className="group border-b border-slate-100 last:border-b-0 hover:bg-[#476ab8]"
                 >
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm">
+                  <td className="whitespace-nowrap px-5 py-2 text-sm">
                     <input
                       type="checkbox"
                       aria-label={`Select row ${row.id}`}
@@ -133,7 +133,7 @@ export default function ReusableTable<T extends RowBase>({
                       onChange={handleToggleRow(row.id)}
                     />
                   </td>
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white">
+                  <td className="whitespace-nowrap px-5 py-2 text-sm text-slate-700 group-hover:text-white">
                     {row.id}
                   </td>
                   {columns.map((column) => (
@@ -141,13 +141,13 @@ export default function ReusableTable<T extends RowBase>({
                       key={String(column.key)}
                       className={
                         column.cellClassName ??
-                        "whitespace-nowrap px-5 py-3.5 text-sm text-slate-700 group-hover:text-white"
+                        "whitespace-nowrap px-5 py-2 text-sm text-slate-700 group-hover:text-white"
                       }
                     >
                       {getCellValue(row, column)}
                     </td>
                   ))}
-                  <td className="whitespace-nowrap px-5 py-3.5 text-sm">
+                  <td className="whitespace-nowrap px-5 py-2 text-sm">
                     {renderActions?.(row)}
                   </td>
                 </tr>
