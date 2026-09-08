@@ -10,6 +10,7 @@ import ReusableTable from "@/components/tables-1/ReusableTable";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
 import type { ColumnDef } from "@/components/tables-1/ReusableTable.types";
+import FilterCard from "@/components/ui/filter-card";
 
 const user: SidebarUser = {
   name: "Masum Billah",
@@ -26,7 +27,7 @@ interface UserRecord {
   status: string;
 }
 
-const requisitionData: UserRecord[] =  [
+const requisitionData: UserRecord[] = [
   {
     id: 8,
     name: "Mehedi",
@@ -111,15 +112,19 @@ export default function Dashboard() {
           <div className="min-h-20 w-full flex justify-between items-center bg-white shadow-sm rounded-xl">
             <div>
               <Breadcrumb
-                title="User"
+                title="Product"
                 items={[
-                  { label: "User", href: "/user" }
+                  { label: "Product", href: "/products/variant-fg-product" },
+                  { label: "Varient FG Product", href: "/products/variant-fg-product" }
                 ]}
               />
             </div>
             <div>
               <NavCh />
             </div>
+          </div>
+          <div className="mt-4">
+            <FilterCard />
           </div>
           <div className="mt-4">
             <div className="bg-[var(--color-bg)]">

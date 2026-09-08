@@ -89,9 +89,10 @@ export default function Dashboard() {
           <div className="min-h-20 w-full flex justify-between items-center bg-white shadow-sm rounded-xl">
             <div>
               <Breadcrumb
-                title="Role"
+                title="CRM"
                 items={[  
-                  { label: "Role", href: "/role" }
+                  { label: "CRM", href: "/crm/buyer" },
+                  { label: "Customer", href: "/crm/buyer" }
                 ]}
               />
             </div>
