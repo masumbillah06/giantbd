@@ -133,7 +133,7 @@ export default function ReusableTable<T extends RowBase>({
                       onChange={handleToggleRow(row.id)}
                     />
                   </td>
-                  <td className="whitespace-nowrap px-5 py-2 text-sm text-slate-700 group-hover:text-white">
+                  <td className="whitespace-nowrap px-5 py-2 text-sm text-slate-950 group-hover:text-white">
                     {row.id}
                   </td>
                   {columns.map((column) => (
@@ -141,7 +141,7 @@ export default function ReusableTable<T extends RowBase>({
                       key={String(column.key)}
                       className={
                         column.cellClassName ??
-                        "whitespace-nowrap px-5 py-2 text-sm text-slate-700 group-hover:text-white"
+                        "whitespace-nowrap px-5 py-2 text-sm text-slate-950 group-hover:text-white"
                       }
                     >
                       {getCellValue(row, column)}
