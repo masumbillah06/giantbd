@@ -30,10 +30,10 @@ export function SidebarNavItem({ item, pathname, level = 0 }: SidebarNavItemProp
   const open = userOpen ?? isActiveBranch;
 
   const Icon = item.icon;
-  const paddingLeft = 8 + level * 2;
+  const paddingLeft = 10 + level * 2;
 
   const rowClasses = cx(
-    "group flex w-full items-center gap-2.5 rounded-xl py-2 text-sm transition-colors",
+    "group flex w-full items-center gap-2.5 rounded-xl py-3 text-sm transition-colors",
     "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A33D]/70",
     isExactActive
       ? "bg-[#476ab8] text-white font-medium"
@@ -51,9 +51,11 @@ export function SidebarNavItem({ item, pathname, level = 0 }: SidebarNavItemProp
           className={rowClasses}
           style={{ paddingLeft, paddingRight: 12 }}
         >
-          <div className="bg-white border border-slate-300 rounded-xl p-1">
-            {Icon && <Icon color="#476ab8" size={20} strokeWidth={2} className="shrink-0" />}
-          </div>
+          {Icon && (
+            <div className="bg-white border border-slate-300 rounded-xl p-1">
+              <Icon color="#476ab8" size={20} strokeWidth={2} className="shrink-0" />
+            </div>
+          )}
           <span className="truncate">{item.label}</span>
         </Link>
       </div>
@@ -70,9 +72,11 @@ export function SidebarNavItem({ item, pathname, level = 0 }: SidebarNavItemProp
         style={{ paddingLeft, paddingRight: 12 }}
       >
         <span className="flex min-w-0 items-center gap-2.5">
-          <div className="bg-white border border-slate-300 rounded-xl p-1">
-            {Icon && <Icon color="#476ab8" size={20} strokeWidth={2} className="shrink-0" />}
-          </div>
+          {Icon && (
+            <div className="bg-white border border-slate-300 rounded-xl p-1">
+              <Icon color="#476ab8" size={20} strokeWidth={2} className="shrink-0" />
+            </div>
+          )}
           <span className="truncate">{item.label}</span>
         </span>
         {open ? (
@@ -92,7 +96,7 @@ export function SidebarNavItem({ item, pathname, level = 0 }: SidebarNavItemProp
         <div className="overflow-hidden">
           <div
             className={cx(
-              "relative mt-0.5 space-y-2.5 border-0 border-white/[0.07]",
+              "relative mt-0.5 py-1 space-y-2.5 border-0 border-white/[0.07]",
               "ml-[var(--rail)]"
             )}
             style={{ ["--rail" as string]: `${paddingLeft + 4}px` }}

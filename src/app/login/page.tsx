@@ -117,7 +117,7 @@ export default function LoginPage() {
               </div>
 
               <button
-                onClick={() => router.push("/dashboard")}
+                onClick={() => router.push("/inventory/dashboard")}
                 className="w-full rounded-lg bg-[#476ab8] py-3 text-sm font-semibold text-white transition-colors hover:bg-[#3a5aa0]"
               >
                 Login
