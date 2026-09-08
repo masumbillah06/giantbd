@@ -24,7 +24,7 @@ export const sidebarNav: NavItem[] = [
       { label: "Dashboard", href: "/inventory/dashboard" },
       { label: "Stock In", href: "/inventory/stock-in" },
       { label: "Stock Out", href: "/inventory/stock-out" },
-      { label: "Out List", href: "/inventory/out-list" },
+      { label: "Stock Out List", href: "/inventory/stock-out-list" },
       { label: "Batch List", href: "/inventory/batch-list" },
       {
         label: "FG Report",
