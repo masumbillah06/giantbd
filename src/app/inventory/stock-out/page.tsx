@@ -3,12 +3,14 @@ import Header from "@/components/layout/header"
 import { Sidebar, type SidebarUser } from "@/components/sidebar/sidebar"
 import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb"
 
+import StockOut from "@/components/stock-out/stock-out"
+
 const user: SidebarUser = {
   name: "Masum Billah",
   email: "masum@example.com",
 }
 
-export default function Dashboard() {
+export default function StockOutPage() {
   return (
     <div className="flex h-screen overflow-hidden bg-[var(--color-bg)] text-[var(--color-text)]">
       <Sidebar user={user} />
@@ -23,9 +25,10 @@ export default function Dashboard() {
                 { label: "Stock Out", href: "/inventory/stock-out" },
               ]}
             />
-
           </div>
-          
+          <div className="mt-5 pb-8">
+            <StockOut />
+          </div>
         </main> 
         <Footer />
       </div>
