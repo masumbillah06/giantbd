@@ -1,0 +1,49 @@
+That error means your Git **index file (`.git/index`) is corrupted or truncated**. Your working files are usually safe; the index is just Git's staging database.
+
+ ### Fix it
+
+ From the repository root, run:
+
+```
+rm -f .git/index
+git reset
+```
+
+ Then check:
+
+```
+git status
+```
+
+ `git reset` will rebuild the index from `HEAD`. **It does not delete your uncommitted working-tree changes.**
+
+ ### If you're on Windows
+
+ **Git Bash:**
+
+```
+rm -f .git/index
+git reset
+git status
+```
+
+ **PowerShell:**
+
+```
+Remove-Item .git\index -Force
+git reset
+git status
+```
+
+ ### If `git reset` also fails
+
+ First verify the repository itself:
+
+```
+git rev-parse --git-dir
+git fsck --full
+```
+
+ If `git fsck` reports problems with objects, that's a different issue and we should avoid blindly deleting anything.
+
+ **Don't delete `.git` itself**—the problem is specifically the `.git/index` file.
