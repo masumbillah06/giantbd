@@ -6,13 +6,9 @@ import { Sidebar, type SidebarUser } from "@/components/sidebar/sidebar";
 import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
 import NavCh from "@/components/ui/nav-child";
 import FilterCard from "@/components/ui/filter-card";
-import StatCard from "@/components/ui/dashboard/stat-card";
 import StockAgingTable from "@/components/tables-1/stock-aging-table";
 import StockAgingTierTabs from "@/components/stock-aging/tier-tabs";
-import {
-  redStockData,
-  getStockAgingSummary,
-} from "@/lib/product-data/stock-aging-data";
+import { redStockData } from "@/lib/product-data/stock-aging-data";
 
 const user: SidebarUser = {
   name: "Masum Billah",
@@ -20,8 +16,6 @@ const user: SidebarUser = {
 };
 
 export default function StockAgingRedPage() {
-  const summary = getStockAgingSummary();
-
   return (
     <div className="flex h-screen overflow-hidden bg-[var(--color-bg)] text-[var(--color-text)]">
       <Sidebar user={user} />
@@ -58,46 +52,6 @@ export default function StockAgingRedPage() {
             </div>
           </div>
 
-          {/* ── KPI Stat Cards ── */}
-          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <StatCard
-              title="Red Zone Stock"
-              value={summary.red.stock.toLocaleString()}
-              unit="Items"
-              breakdown={`${summary.red.percentage}% of Total Inventory`}
-              trend="down"
-              trendColorClass="text-rose-500"
-            />
-            <StatCard
-              title="Critical Batches"
-              value={summary.red.count}
-              unit="Batches"
-              breakdown="90+ Days in Warehouse"
-              trend="down"
-              trendColorClass="text-rose-500"
-            />
-            <StatCard
-              title="Blocked Inactive Stock"
-              value={summary.totalBlocked.toLocaleString()}
-              unit="Items"
-              breakdown="High obsolescence risk"
-              trend="down"
-              trendColorClass="text-rose-500"
-            />
-            <StatCard
-              title="Resolution Needed"
-              value="Immediate"
-              breakdown="Liquidation, transfer or discount"
-              trend="down"
-              trendColorClass="text-rose-500"
-            />
-          </div>
-
-          {/* ── Tier Navigation Tabs ── */}
-          <div className="mt-4">
-            <StockAgingTierTabs />
-          </div>
-
           {/* ── Filter Card ── */}
           <div className="mt-4">
             <FilterCard />
@@ -113,4 +67,3 @@ export default function StockAgingRedPage() {
     </div>
   );
 }
-
