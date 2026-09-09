@@ -5,3 +5,4 @@ export * from "./batch-table";
 export * from "./stockout-table";
 export * from "./permission-table";
 export * from "./batch-product-table";
+export * from "./stock-aging-table";
