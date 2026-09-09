@@ -1,139 +1,155 @@
 "use client"
 
-import { TrendingUp, ArrowUpRight } from "lucide-react"
-import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
-
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-  ChartLegend,
-  ChartLegendContent,
-  type ChartConfig,
-} from "@/components/ui/chart"
+  CartesianGrid,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts"
 
-export const description = "Monthly Inventory Movement Trends"
+export const description = "Stock In & Out (30 Days)"
 
 const chartData = [
-  { month: "January", stockIn: 12400, stockOut: 8500, available: 19500 },
-  { month: "February", stockIn: 15600, stockOut: 11200, available: 23900 },
-  { month: "March", stockIn: 18200, stockOut: 14800, available: 27300 },
-  { month: "April", stockIn: 13900, stockOut: 16100, available: 25100 },
-  { month: "May", stockIn: 21500, stockOut: 15400, available: 31200 },
-  { month: "June", stockIn: 24800, stockOut: 17900, available: 38100 },
-  { month: "July", stockIn: 28100, stockOut: 20300, available: 45900 },
-  { month: "August", stockIn: 23600, stockOut: 19100, available: 50400 },
-  { month: "September", stockIn: 32000, stockOut: 22800, available: 59600 },
+  { date: "Aug 11", stockIn: 0, stockOut: 0 },
+  { date: "Aug 12", stockIn: 0, stockOut: 0 },
+  { date: "Aug 13", stockIn: 0, stockOut: 0 },
+  { date: "Aug 14", stockIn: 0, stockOut: 0 },
+  { date: "Aug 15", stockIn: 0, stockOut: 8000 },
+  { date: "Aug 16", stockIn: 0, stockOut: 42000 },
+  { date: "Aug 17", stockIn: 0, stockOut: 60500 },
+  { date: "Aug 18", stockIn: 0, stockOut: 30000 },
+  { date: "Aug 19", stockIn: 0, stockOut: 0 },
+  { date: "Aug 20", stockIn: 0, stockOut: 0 },
+  { date: "Aug 21", stockIn: 0, stockOut: 1200 },
+  { date: "Aug 22", stockIn: 0, stockOut: 1500 },
+  { date: "Aug 23", stockIn: 0, stockOut: 900 },
+  { date: "Aug 24", stockIn: 0, stockOut: 0 },
+  { date: "Aug 25", stockIn: 0, stockOut: 0 },
+  { date: "Aug 26", stockIn: 1800, stockOut: 0 },
+  { date: "Aug 27", stockIn: 32000, stockOut: 1000 },
+  { date: "Aug 28", stockIn: 60000, stockOut: 1800 },
+  { date: "Aug 29", stockIn: 10000, stockOut: 2000 },
+  { date: "Aug 30", stockIn: 7000, stockOut: 800 },
+  { date: "Aug 31", stockIn: 18000, stockOut: 300 },
+  { date: "Sep 1", stockIn: 55000, stockOut: 0 },
+  { date: "Sep 2", stockIn: 102000, stockOut: 0 },
+  { date: "Sep 3", stockIn: 18000, stockOut: 0 },
+  { date: "Sep 4", stockIn: 0, stockOut: 0 },
+  { date: "Sep 5", stockIn: 0, stockOut: 0 },
+  { date: "Sep 6", stockIn: 0, stockOut: 0 },
+  { date: "Sep 7", stockIn: 0, stockOut: 0 },
 ]
-
-const chartConfig = {
-  available: {
-    label: "Available Stock",
-    color: "var(--chart-1)",
-  },
-  stockIn: {
-    label: "Stock In (Received)",
-    color: "var(--chart-2)",
-  },
-  stockOut: {
-    label: "Stock Out (Issued)",
-    color: "var(--chart-5)",
-  },
-} satisfies ChartConfig
 
 export function ChartLineMultiple() {
   return (
-    <Card className="h-full w-full flex flex-col justify-between overflow-hidden shadow-xs">
-      <CardHeader className="px-5 pt-4 pb-0 shrink-0">
-        <div className="flex items-center justify-between">
-          <div>
-            <CardTitle>Inventory Movement Trends</CardTitle>
-            <CardDescription>
-              Monthly Stock Inflow, Outflow & Total Available Units (2026)
-            </CardDescription>
-          </div>
-          <div className="flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400">
-            <ArrowUpRight className="h-3.5 w-3.5" />
-            +18.4% YTD
-          </div>
-        </div>
-      </CardHeader>
-      <CardContent className="flex-1 min-h-0 w-full px-2 sm:px-4 py-1">
-        <ChartContainer
-          config={chartConfig}
-          className="h-full w-full aspect-auto [&_.recharts-responsive-container]:!h-full [&_.recharts-responsive-container]:!w-full"
-        >
+    <div className="flex h-full w-full flex-col justify-between rounded-xl border border-slate-200/90 bg-white p-4 shadow-xs dark:border-slate-800 dark:bg-card">
+      {/* Header with blue/purple bar indicator */}
+      <div className="flex items-center gap-2 mb-1 shrink-0">
+        <span className="h-4 w-1 rounded-full bg-[#4338ca]" />
+        <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
+          Stock In & Out (30 Days)
+        </h3>
+      </div>
+
+      {/* Line Chart Area */}
+      <div className="min-h-0 flex-1 w-full pt-1">
+        <ResponsiveContainer width="100%" height="100%">
           <LineChart
-            accessibilityLayer
             data={chartData}
-            margin={{
-              top: 15,
-              right: 25,
-              left: 10,
-              bottom: 0,
-            }}
+            margin={{ top: 15, right: 20, left: 10, bottom: 0 }}
           >
-            <CartesianGrid vertical={false} strokeDasharray="3 3" opacity={0.3} />
+            <CartesianGrid
+              vertical={false}
+              strokeDasharray="2 2"
+              stroke="#e2e8f0"
+              opacity={0.6}
+            />
             <XAxis
-              dataKey="month"
+              dataKey="date"
+              ticks={["Aug 11", "Aug 16", "Aug 21", "Aug 26", "Aug 31", "Sep 5"]}
               tickLine={false}
-              axisLine={false}
+              axisLine={{ stroke: "#cbd5e1", strokeWidth: 1 }}
+              tick={{ fontSize: 11, fill: "#64748b" }}
               tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
             />
             <YAxis
+              ticks={[0, 25000, 50000, 75000, 100000]}
+              domain={[0, 110000]}
               tickLine={false}
               axisLine={false}
+              tick={{ fontSize: 11, fill: "#64748b" }}
+              tickFormatter={(val) => (val === 0 ? "0" : val.toLocaleString())}
               tickMargin={8}
-              tickFormatter={(value) => `${(value / 1000).toFixed(0)}k`}
             />
-            <ChartTooltip
-              cursor={{ stroke: "var(--color-border)", strokeWidth: 1, strokeDasharray: "4 4" }}
-              content={<ChartTooltipContent indicator="dot" />}
+            <Tooltip
+              content={({ active, payload, label }) => {
+                if (active && payload && payload.length) {
+                  return (
+                    <div className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs shadow-md dark:border-slate-700 dark:bg-slate-900">
+                      <div className="font-semibold text-slate-800 dark:text-slate-200 mb-1">
+                        {label}
+                      </div>
+                      <div className="flex items-center gap-2 text-[#5b51d8]">
+                        <span>Stock In:</span>
+                        <span className="font-mono font-medium">
+                          {Number(payload[0]?.value || 0).toLocaleString()}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 text-[#e26a2c]">
+                        <span>Stock Out:</span>
+                        <span className="font-mono font-medium">
+                          {Number(payload[1]?.value || 0).toLocaleString()}
+                        </span>
+                      </div>
+                    </div>
+                  )
+                }
+                return null
+              }}
             />
-            <ChartLegend content={<ChartLegendContent />} />
             <Line
-              dataKey="available"
               type="monotone"
-              stroke="var(--color-available)"
-              strokeWidth={3}
-              dot={{ fill: "var(--color-available)", r: 3 }}
-              activeDot={{ r: 6 }}
-            />
-            <Line
               dataKey="stockIn"
-              type="monotone"
-              stroke="var(--color-stockIn)"
-              strokeWidth={2.5}
-              dot={{ fill: "var(--color-stockIn)", r: 3 }}
-              activeDot={{ r: 6 }}
+              stroke="#5b51d8"
+              strokeWidth={2}
+              dot={false}
+              activeDot={{ r: 5, fill: "#5b51d8" }}
             />
             <Line
-              dataKey="stockOut"
               type="monotone"
-              stroke="var(--color-stockOut)"
-              strokeWidth={2.5}
-              dot={{ fill: "var(--color-stockOut)", r: 3 }}
-              activeDot={{ r: 6 }}
+              dataKey="stockOut"
+              stroke="#e26a2c"
+              strokeWidth={2}
+              strokeDasharray="3 3"
+              dot={false}
+              activeDot={{ r: 5, fill: "#e26a2c" }}
             />
           </LineChart>
-        </ChartContainer>
-      </CardContent>
-      <CardFooter className="px-5 py-2.5 shrink-0 flex items-center justify-between border-t bg-muted/20 text-xs text-muted-foreground">
-        <div className="flex items-center gap-1.5 font-medium text-emerald-600 dark:text-emerald-400">
-          <TrendingUp className="h-4 w-4" />
-          Stock inflow up 15.2% this month
+        </ResponsiveContainer>
+      </div>
+
+      {/* Legend matching the image */}
+      <div className="flex items-center justify-center gap-6 pt-2 pb-0.5 text-xs shrink-0">
+        <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+          <div className="flex items-center">
+            <span className="h-[2px] w-2.5 bg-[#5b51d8]" />
+            <span className="h-2 w-2 rounded-full border-[1.5px] border-[#5b51d8] bg-white" />
+            <span className="h-[2px] w-2.5 bg-[#5b51d8]" />
+          </div>
+          <span className="text-[#5b51d8] font-medium text-[11px]">Stock In</span>
         </div>
-        <div>Total Available: 59,600 Units</div>
-      </CardFooter>
-    </Card>
+        <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+          <div className="flex items-center">
+            <span className="h-[2px] w-2.5 border-t border-dotted border-[#e26a2c]" />
+            <span className="h-2 w-2 rounded-full border-[1.5px] border-[#e26a2c] bg-white" />
+            <span className="h-[2px] w-2.5 border-t border-dotted border-[#e26a2c]" />
+          </div>
+          <span className="text-[#e26a2c] font-medium text-[11px]">Stock Out</span>
+        </div>
+      </div>
+    </div>
   )
 }

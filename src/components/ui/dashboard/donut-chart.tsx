@@ -1,137 +1,100 @@
 "use client"
 
-import { ShieldCheck } from "lucide-react"
-import { Cell, Label, Pie, PieChart } from "recharts"
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts"
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-  ChartLegend,
-  ChartLegendContent,
-  type ChartConfig,
-} from "@/components/ui/chart"
-
-export const description = "Stock Aging Distribution Donut Chart"
+export const description = "Stock In : Master (30 Days)"
 
 const chartData = [
-  { tier: "green", label: "Green (0-30d)", stock: 48500, fill: "var(--chart-2)" },
-  { tier: "yellow", label: "Yellow (31-90d)", stock: 24200, fill: "var(--chart-3)" },
-  { tier: "red", label: "Red (90+d)", stock: 11300, fill: "#ef4444" },
-  { tier: "blocked", label: "Blocked", stock: 6800, fill: "var(--chart-4)" },
-  { tier: "reserved", label: "Reserved", stock: 9200, fill: "var(--chart-1)" },
+  { name: "TD Shirt", value: 48, fill: "#7c3aed" },
+  { name: "NH-150", value: 22, fill: "#52b788" },
+  { name: "test", value: 16, fill: "#d4941e" },
+  { name: "300 Flow -150 Man", value: 5, fill: "#c53030" },
+  { name: "MacBook Pro", value: 3, fill: "#2563eb" },
+  { name: "test (2)", label: "test", value: 3, fill: "#86efac" },
+  { name: "Chair", value: 2, fill: "#b83280" },
+  { name: "test000", value: 1, fill: "#6366f1" },
 ]
 
-const chartConfig = {
-  stock: {
-    label: "Stock Units",
-  },
-  green: {
-    label: "Green (0-30d)",
-    color: "var(--chart-2)",
-  },
-  yellow: {
-    label: "Yellow (31-90d)",
-    color: "var(--chart-3)",
-  },
-  red: {
-    label: "Red (90+d)",
-    color: "#ef4444",
-  },
-  blocked: {
-    label: "Blocked",
-    color: "var(--chart-4)",
-  },
-  reserved: {
-    label: "Reserved",
-    color: "var(--chart-1)",
-  },
-} satisfies ChartConfig
+const legendItems = [
+  { label: "Chair", fill: "#b83280" },
+  { label: "300 Flow -150 Man", fill: "#c53030" },
+  { label: "MacBook Pro", fill: "#2563eb" },
+  { label: "NH-150", fill: "#52b788" },
+  { label: "TD Shirt", fill: "#7c3aed" },
+  { label: "test", fill: "#d4941e" },
+  { label: "test", fill: "#86efac" },
+  { label: "test000", fill: "#6366f1" },
+]
 
 export function ChartPieDonut() {
   return (
-    <Card className="h-full w-full flex flex-col justify-between overflow-hidden shadow-xs">
-      <CardHeader className="px-5 pt-4 pb-0 shrink-0">
-        <CardTitle>Stock Aging Health</CardTitle>
-        <CardDescription>Inventory classification by aging tiers</CardDescription>
-      </CardHeader>
-      <CardContent className="flex-1 min-h-0 w-full px-2 sm:px-4 py-1 flex items-center justify-center">
-        <ChartContainer
-          config={chartConfig}
-          className="h-full w-full aspect-auto flex items-center justify-center [&_.recharts-responsive-container]:!h-full [&_.recharts-responsive-container]:!w-full"
-        >
+    <div className="flex h-full w-full flex-col justify-between rounded-xl border border-slate-200/90 bg-white p-4 shadow-xs dark:border-slate-800 dark:bg-card">
+      {/* Header with blue/purple bar indicator */}
+      <div className="flex items-center gap-2 mb-1 shrink-0">
+        <span className="h-4 w-1 rounded-full bg-[#4338ca]" />
+        <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
+          Stock In : Master (30 Days)
+        </h3>
+      </div>
+
+      {/* Donut Chart Area */}
+      <div className="min-h-0 flex-1 w-full flex items-center justify-center">
+        <ResponsiveContainer width="100%" height={170}>
           <PieChart>
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent nameKey="tier" hideLabel />}
+            <Tooltip
+              content={({ active, payload }) => {
+                if (active && payload && payload.length) {
+                  const item = payload[0]
+                  return (
+                    <div className="rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs shadow-md dark:border-slate-700 dark:bg-slate-900">
+                      <div className="flex items-center gap-1.5">
+                        <span
+                          className="h-2 w-2 rounded-full"
+                          style={{ backgroundColor: item.payload?.fill }}
+                        />
+                        <span className="font-medium text-slate-700 dark:text-slate-200">
+                          {item.name}:
+                        </span>
+                        <span className="font-semibold text-slate-900 dark:text-slate-100">
+                          {item.value}
+                        </span>
+                      </div>
+                    </div>
+                  )
+                }
+                return null
+              }}
             />
             <Pie
               data={chartData}
-              dataKey="stock"
-              nameKey="tier"
-              innerRadius="50%"
-              outerRadius="75%"
-              paddingAngle={3}
+              dataKey="value"
+              nameKey="name"
+              innerRadius={44}
+              outerRadius={72}
+              paddingAngle={1}
+              stroke="#ffffff"
+              strokeWidth={2}
             >
               {chartData.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={entry.fill}
-                  stroke="var(--background)"
-                  strokeWidth={2}
-                />
+                <Cell key={`cell-${index}`} fill={entry.fill} />
               ))}
-              <Label
-                content={({ viewBox }) => {
-                  if (viewBox && "cx" in viewBox && "cy" in viewBox) {
-                    return (
-                      <text
-                        x={viewBox.cx}
-                        y={viewBox.cy}
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                      >
-                        <tspan
-                          x={viewBox.cx}
-                          y={(viewBox.cy || 0) - 5}
-                          className="fill-foreground text-xl font-bold font-heading"
-                        >
-                          100K
-                        </tspan>
-                        <tspan
-                          x={viewBox.cx}
-                          y={(viewBox.cy || 0) + 15}
-                          className="fill-muted-foreground text-[11px] font-medium"
-                        >
-                          Total Units
-                        </tspan>
-                      </text>
-                    )
-                  }
-                }}
-              />
             </Pie>
-            <ChartLegend
-              content={<ChartLegendContent nameKey="tier" className="flex-wrap gap-2 pt-2 text-[11px]" />}
-            />
           </PieChart>
-        </ChartContainer>
-      </CardContent>
-      <CardFooter className="px-5 py-2.5 shrink-0 flex items-center justify-between border-t bg-muted/20 text-xs text-muted-foreground">
-        <div className="flex items-center gap-1.5 font-medium text-emerald-600 dark:text-emerald-400">
-          <ShieldCheck className="h-4 w-4" />
-          72.7% Healthy (Green & Yellow)
-        </div>
-        <div>Red: 11.3K Units</div>
-      </CardFooter>
-    </Card>
+        </ResponsiveContainer>
+      </div>
+
+      {/* Legend matching the image */}
+      <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 pt-1 pb-0.5 text-[10px] text-slate-500 shrink-0">
+        {legendItems.map((item, index) => (
+          <div key={index} className="flex items-center gap-1">
+            <span
+              className="h-2 w-2.5 shrink-0 rounded-[1px]"
+              style={{ backgroundColor: item.fill }}
+            />
+            <span className="leading-tight">{item.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }

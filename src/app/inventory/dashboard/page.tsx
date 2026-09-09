@@ -45,19 +45,19 @@ export default function Dashboard() {
             <StatCard title="Total Users" value={1000} unit="users" breakdown="0 Bat | 0 Mas | 0 Var" trend="up" />
           </div>
           {/* Main Inventory Trends Chart */}
-          <div className="mt-4 h-[420px] w-full">
+          <div className="mt-4 h-[340px] w-full">
             <ChartLineMultiple />
           </div>
 
           {/* Inventory Breakdown Charts */}
-          <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-3 lg:h-[480px]">
-            <div className="h-[480px] lg:h-full w-full">
+          <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-3 lg:h-[280px]">
+            <div className="h-[280px] lg:h-full w-full">
               <ChartBarDefault />
             </div>
-            <div className="h-[480px] lg:h-full w-full">
+            <div className="h-[280px] lg:h-full w-full">
               <ChartPieDonut />
             </div>
-            <div className="h-[480px] lg:h-full w-full">
+            <div className="h-[280px] lg:h-full w-full">
               <ChartPieSimple />
             </div>
           </div>
