@@ -41,7 +41,7 @@ export function WeekSelector({
   };
 
   return (
-    <div className="flex items-center gap-2 w-full pt-3">
+    <div className="flex items-center gap-2 w-full pt-3"> 
       {/* Left Chevron Button */}
       <button
         type="button"

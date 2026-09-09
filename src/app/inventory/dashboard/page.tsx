@@ -21,7 +21,6 @@ export default function Dashboard() {
       <div className="flex min-h-0 min-w-0 flex-1 flex-col">
         <Header />
         <main className="min-h-0 flex-1 overflow-y-auto p-5">
-          {/* <h1>Dashboard</h1> */}
           <div>
             <Breadcrumb
               title="Warehouse FG"
@@ -33,16 +32,16 @@ export default function Dashboard() {
 
           </div>
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            <StatCard title="Total Users" value={1000} unit="users" breakdown="0 Bat | 0 Mas | 0 Var" trend="down" />
-            <StatCard title="Total Users" value={1000} unit="users" breakdown="0 Bat | 0 Mas | 0 Var" trend="up" />
-            <StatCard title="Total Users" value={1000} unit="users" breakdown="0 Bat | 0 Mas | 0 Var" trend="up" />
-            <StatCard title="Total Users" value={1000} unit="users" breakdown="0 Bat | 0 Mas | 0 Var" trend="up" />
-            <StatCard title="Total Users" value={1000} unit="users" breakdown="0 Bat | 0 Mas | 0 Var" trend="up" />
-            <StatCard title="Total Users" value={1000} unit="users" breakdown="0 Bat | 0 Mas | 0 Var" trend="up" />
-            <StatCard title="Total Users" value={1000} unit="users" breakdown="0 Bat | 0 Mas | 0 Var" trend="up" />
-            <StatCard title="Total Users" value={1000} unit="users" breakdown="0 Bat | 0 Mas | 0 Var" trend="up" />
-            <StatCard title="Total Users" value={1000} unit="users" breakdown="0 Bat | 0 Mas | 0 Var" trend="up" />
-            <StatCard title="Total Users" value={1000} unit="users" breakdown="0 Bat | 0 Mas | 0 Var" trend="up" />
+            <StatCard title="Daily In" value="0" unit="Pairs" breakdown="0 Bat | 0 Mas | 0 Var" trend="up" />
+            <StatCard title="Weekly In" value="30" unit="Pairs" breakdown="1 Bat | 1 Mas | 2 Var" trend="up" />
+            <StatCard title="Monthly In" value="148,016" unit="Pairs" breakdown="5 Bat | 3 Mas | 28 Var" trend="up" />
+            <StatCard title="Yearly In" value="21,795,941" unit="Pairs" breakdown="41 Bat | 12 Mas | 271 Var" trend="up" />
+            <StatCard title="Total In" value="21,795,941" unit="Pairs" breakdown="41 Bat | 12 Mas | 271 Var" trend="up" />
+            <StatCard title="Daily Out" value="0" unit="Pairs" breakdown="0 Bat | 0 Mas | 0 Var" trend="down" />
+            <StatCard title="Weekly Out" value="519" unit="Pairs" breakdown="3 Bat | 2 Mas | 4 Var" trend="down" />
+            <StatCard title="Monthly Out" value="735" unit="Pairs" breakdown="4 Bat | 3 Mas | 12 Var" trend="down" />
+            <StatCard title="Yearly Out" value="147,126" unit="Pairs" breakdown="27 Bat | 11 Mas | 92 Var" trend="down" />
+            <StatCard title="Total Out" value="147,126" unit="Pairs" breakdown="27 Bat | 11 Mas | 92 Var" trend="down" />
           </div>
           {/* Main Inventory Trends Chart */}
           <div className="mt-4 h-[340px] w-full">
