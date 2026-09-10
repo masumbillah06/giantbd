@@ -5,7 +5,7 @@ import Header from "@/components/layout/header";
 import { Sidebar, type SidebarUser } from "@/components/sidebar/sidebar";
 import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
 import NavCh from "@/components/ui/nav-child";
-import PermissionTable from "@/components/tables-1/permission-table";
+import PermissionTable from "@/components/tables/permission-table";
 
 const user: SidebarUser = {
   name: "Masum Billah",

@@ -1,4 +1,4 @@
-import type { ColumnDef } from "@/components/tables-1/ReusableTable.types";
+import type { ColumnDef } from "@/components/tables/ReusableTable.types";
 
 export interface CustomerRecord {
   id: number;

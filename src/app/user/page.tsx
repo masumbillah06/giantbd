@@ -6,10 +6,10 @@ import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb"
 import NavCh from "@/components/ui/nav-child"
 import { useState } from "react";
 import { Eye, PenSquareIcon, Trash2 } from "lucide-react";
-import ReusableTable from "@/components/tables-1/ReusableTable";
+import ReusableTable from "@/components/tables/ReusableTable";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
-import type { ColumnDef } from "@/components/tables-1/ReusableTable.types";
+import type { ColumnDef } from "@/components/tables/ReusableTable.types";
 
 const user: SidebarUser = {
   name: "Masum Billah",

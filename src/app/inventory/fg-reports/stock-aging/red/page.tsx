@@ -6,7 +6,7 @@ import { Sidebar, type SidebarUser } from "@/components/sidebar/sidebar";
 import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
 import NavCh from "@/components/ui/nav-child";
 import FilterCard from "@/components/ui/filter-card";
-import StockAgingTable from "@/components/tables-1/stock-aging-table";
+import StockAgingTable from "@/components/tables/stock-aging-table";
 import StockAgingTierTabs from "@/components/stock-aging/tier-tabs";
 import { redStockData } from "@/lib/product-data/stock-aging-data";
 

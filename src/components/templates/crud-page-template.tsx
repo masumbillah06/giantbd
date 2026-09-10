@@ -4,12 +4,12 @@ import React, { useState, useMemo } from "react";
 import DashboardShell from "@/components/layout/dashboard-shell";
 import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
 import TableToolbar from "@/components/ui/table-toolbar";
-import ReusableTable from "@/components/tables-1/ReusableTable";
+import ReusableTable from "@/components/tables/ReusableTable";
 import Pagination from "@/components/ui/pagination";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { Eye, PenSquareIcon, Trash2 } from "lucide-react";
-import type { ColumnDef, RowBase } from "@/components/tables-1/ReusableTable.types";
+import type { ColumnDef, RowBase } from "@/components/tables/ReusableTable.types";
 
 export interface CrudBreadcrumbItem {
   label: string;

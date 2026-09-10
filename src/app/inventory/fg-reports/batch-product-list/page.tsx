@@ -6,7 +6,7 @@ import { Sidebar, type SidebarUser } from "@/components/sidebar/sidebar";
 import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
 import NavCh from "@/components/ui/nav-child";
 import FilterCard from "@/components/ui/filter-card";
-import BatchProductTable from "@/components/tables-1/batch-product-table";
+import BatchProductTable from "@/components/tables/batch-product-table";
 
 const user: SidebarUser = {
   name: "Masum Billah",

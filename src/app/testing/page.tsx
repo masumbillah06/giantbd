@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { ClipboardList, Package, Printer, Truck } from "lucide-react";
-import ReusableTable from "@/components/tables-1/ReusableTable";
+import ReusableTable from "@/components/tables/ReusableTable";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
-import { LabelCheck, StatusPill } from "@/components/tables-1/cell-badges";
-import type { ColumnDef } from "@/components/tables-1/ReusableTable.types";
+import { LabelCheck, StatusPill } from "@/components/tables/cell-badges";
+import type { ColumnDef } from "@/components/tables/ReusableTable.types";
 
 interface Requisition {
   id: string;
