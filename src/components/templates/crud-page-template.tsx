@@ -45,7 +45,7 @@ export function CrudPageTemplate<T extends RowBase>({
   data,
   columns,
   minWidth = "900px",
-  withShell = true,
+  withShell = false,
   withTopBar = true,
   searchFilterKeys,
   pageSize: initialPageSize = 10,
