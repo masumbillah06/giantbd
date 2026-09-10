@@ -4,15 +4,17 @@ import React, { useMemo } from "react";
 import { MatrixTable, type MatrixPeriodColumn } from "@/components/ui/matrix-table";
 import type { DeliveryItem, WeekInfo } from "@/lib/product-data/weekly-delivery-data";
 
-export interface DeliveryMatrixTableProps {
+export interface WeeklyMatrixTableProps {
   currentWeek: WeekInfo;
   items: DeliveryItem[];
 }
 
-export function DeliveryMatrixTable({
+export type DeliveryMatrixTableProps = WeeklyMatrixTableProps;
+
+export function WeeklyMatrixTable({
   currentWeek,
   items,
-}: DeliveryMatrixTableProps) {
+}: WeeklyMatrixTableProps) {
   const columns = useMemo<MatrixPeriodColumn[]>(
     () =>
       currentWeek.days.map((d) => ({
@@ -43,4 +45,6 @@ export function DeliveryMatrixTable({
   );
 }
 
-export default DeliveryMatrixTable;
+export const DeliveryMatrixTable = WeeklyMatrixTable;
+export default WeeklyMatrixTable;
+

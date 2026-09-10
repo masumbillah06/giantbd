@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { CreateLcPo } from "./create-lc-po";
 import { BasicInfo, type BasicInfoData } from "./basic-info";
 import { ProductDetails, type StockOutProductItem } from "./product-details";
-import { StockOutActions } from "./stock-out-actions";
+import { FormActionBar } from "@/components/ui/form-action-bar";
 
 export interface StockOutProps {
   onSuccess?: () => void;
@@ -172,7 +172,7 @@ export function StockOut({ onSuccess }: StockOutProps) {
       />
 
       {/* 4. Action Buttons */}
-      <StockOutActions
+      <FormActionBar
         onReset={handleReset}
         onPreview={handlePreview}
         onCreate={handleCreate}

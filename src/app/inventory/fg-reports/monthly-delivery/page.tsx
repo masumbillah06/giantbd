@@ -3,7 +3,7 @@
 import DashboardShell from "@/components/layout/dashboard-shell";
 import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
 import NavCh from "@/components/ui/nav-child";
-import MonthlyDelivery from "@/components/monthly-delivery/monthly-delivery";
+import MonthlyDelivery from "@/components/delivery/monthly-delivery";
 
 export default function MonthlyDeliveryPage() {
   return (

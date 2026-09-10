@@ -5,7 +5,7 @@ import Header from "@/components/layout/header";
 import { Sidebar, type SidebarUser } from "@/components/sidebar/sidebar";
 import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
 import NavCh from "@/components/ui/nav-child";
-import DeliverySummary from "@/components/delivery-summary/delivery-summary";
+import DeliverySummary from "@/components/delivery/delivery-summary";
 
 const user: SidebarUser = {
   name: "Masum Billah",

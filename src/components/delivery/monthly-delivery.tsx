@@ -1,12 +1,13 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import MonthlyFilterBar, { type MonthlyFilterState } from "./filter-bar";
+import { DeliveryFilterBar, type DeliveryFilterState } from "./filter-bar";
 import MonthSelector from "./month-selector";
 import MonthlyMatrixTable from "./monthly-matrix-table";
 import {
   MONTHS_LIST,
   MONTHLY_DELIVERY_ITEMS,
+  MONTHLY_FILTER_OPTIONS,
   type MonthlyDeliveryItem,
 } from "@/lib/product-data/monthly-delivery-data";
 
@@ -20,7 +21,7 @@ export function MonthlyDelivery({
   initialData = MONTHLY_DELIVERY_ITEMS,
 }: MonthlyDeliveryProps) {
   const [selectedMonthId, setSelectedMonthId] = useState<string>(initialMonthId);
-  const [filters, setFilters] = useState<MonthlyFilterState>({
+  const [filters, setFilters] = useState<DeliveryFilterState>({
     product: "",
     material: "",
     buyer: "",
@@ -51,7 +52,15 @@ export function MonthlyDelivery({
       {/* ── Top Card: Filters & Horizontal Month Carousel ── */}
       <div className="rounded-2xl border border-slate-200/90 bg-white p-4 shadow-xs">
         {/* Row 1: Dropdown Filters */}
-        <MonthlyFilterBar filters={filters} onChange={setFilters} />
+        <DeliveryFilterBar
+          filters={filters}
+          onChange={setFilters}
+          productOptions={MONTHLY_FILTER_OPTIONS.products}
+          materialOptions={MONTHLY_FILTER_OPTIONS.materials}
+          buyerOptions={MONTHLY_FILTER_OPTIONS.buyers}
+          colorOptions={MONTHLY_FILTER_OPTIONS.colors}
+          yearOptions={MONTHLY_FILTER_OPTIONS.years}
+        />
 
         {/* Row 2: Month Slider */}
         <MonthSelector

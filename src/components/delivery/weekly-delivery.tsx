@@ -1,12 +1,13 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import FilterBar, { type FilterState } from "./filter-bar";
+import { DeliveryFilterBar, type DeliveryFilterState } from "./filter-bar";
 import WeekSelector from "./week-selector";
-import DeliveryMatrixTable from "./delivery-matrix-table";
+import WeeklyMatrixTable from "./weekly-matrix-table";
 import {
   WEEKS_LIST,
   DELIVERY_ITEMS,
+  FILTER_OPTIONS,
   type DeliveryItem,
 } from "@/lib/product-data/weekly-delivery-data";
 
@@ -20,7 +21,7 @@ export function WeeklyDelivery({
   initialData = DELIVERY_ITEMS,
 }: WeeklyDeliveryProps) {
   const [selectedWeekId, setSelectedWeekId] = useState<string>(initialWeekId);
-  const [filters, setFilters] = useState<FilterState>({
+  const [filters, setFilters] = useState<DeliveryFilterState>({
     product: "",
     material: "",
     buyer: "",
@@ -51,7 +52,15 @@ export function WeeklyDelivery({
       {/* ── Top Card: Filters & Horizontal Week Carousel ── */}
       <div className="rounded-2xl border border-slate-200/90 bg-white p-4 shadow-xs">
         {/* Row 1: Dropdown Filters */}
-        <FilterBar filters={filters} onChange={setFilters} />
+        <DeliveryFilterBar
+          filters={filters}
+          onChange={setFilters}
+          productOptions={FILTER_OPTIONS.products}
+          materialOptions={FILTER_OPTIONS.materials}
+          buyerOptions={FILTER_OPTIONS.buyers}
+          colorOptions={FILTER_OPTIONS.colors}
+          yearOptions={FILTER_OPTIONS.years}
+        />
 
         {/* Row 2: Week Slider */}
         <WeekSelector
@@ -62,7 +71,7 @@ export function WeeklyDelivery({
       </div>
 
       {/* ── Table Card: Grouped Delivery Matrix ── */}
-      <DeliveryMatrixTable
+      <WeeklyMatrixTable
         currentWeek={currentWeek}
         items={filteredItems}
       />

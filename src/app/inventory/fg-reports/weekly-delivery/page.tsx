@@ -3,7 +3,7 @@
 import DashboardShell from "@/components/layout/dashboard-shell";
 import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
 import NavCh from "@/components/ui/nav-child";
-import WeeklyDelivery from "@/components/weekly-delivery/weekly-delivery";
+import WeeklyDelivery from "@/components/delivery/weekly-delivery";
 
 export default function WeeklyDeliveryPage() {
   return (

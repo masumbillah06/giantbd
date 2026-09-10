@@ -63,25 +63,27 @@ export function DeliverySummaryTable({ summaryData }: DeliverySummaryTableProps)
               </td>
             </tr>
           ))}
+        </tbody>
 
-          {/* Bottom TOTAL Row */}
-          <tr className="border-t-2 border-slate-300 bg-white">
-            <td className="px-5 py-3.5 font-bold text-slate-950 text-xs sm:text-sm tracking-wide">
-              TOTAL
+        {/* Table Footer: Total Row */}
+        <tfoot>
+          <tr className="border-t-2 border-slate-200 bg-slate-50/80 font-bold">
+            <td className="px-5 py-4 text-xs sm:text-sm text-slate-900 font-bold">
+              Total
             </td>
             {columns.map((col) => (
               <td
                 key={col.key}
-                className="px-4 py-3.5 font-bold text-slate-950 text-xs sm:text-sm whitespace-nowrap"
+                className="px-4 py-4 text-xs sm:text-sm text-slate-900 font-bold whitespace-nowrap"
               >
                 {formatNumber(totals[col.key] || 0)}
               </td>
             ))}
-            <td className="px-5 py-3.5 font-bold text-slate-950 text-xs sm:text-sm whitespace-nowrap">
+            <td className="px-5 py-4 text-xs sm:text-sm text-slate-900 font-extrabold whitespace-nowrap">
               {formatNumber(grandTotal)}
             </td>
           </tr>
-        </tbody>
+        </tfoot>
       </table>
     </div>
   );

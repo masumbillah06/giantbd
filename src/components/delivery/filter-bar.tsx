@@ -2,9 +2,8 @@
 
 import React, { useMemo } from "react";
 import { DynamicFilterBar, type FilterConfig } from "@/components/ui/dynamic-filter-bar";
-import { MONTHLY_FILTER_OPTIONS } from "@/lib/product-data/monthly-delivery-data";
 
-export interface MonthlyFilterState {
+export interface DeliveryFilterState {
   product: string;
   material: string;
   buyer: string;
@@ -12,9 +11,13 @@ export interface MonthlyFilterState {
   year: number;
 }
 
-export interface MonthlyFilterBarProps {
-  filters: MonthlyFilterState;
-  onChange: (filters: MonthlyFilterState) => void;
+// Backward-compatible type aliases
+export type MonthlyFilterState = DeliveryFilterState;
+export type FilterState = DeliveryFilterState;
+
+export interface DeliveryFilterBarProps {
+  filters: DeliveryFilterState;
+  onChange: (filters: DeliveryFilterState) => void;
   productOptions?: string[];
   materialOptions?: string[];
   buyerOptions?: string[];
@@ -22,16 +25,20 @@ export interface MonthlyFilterBarProps {
   yearOptions?: number[];
 }
 
-export function MonthlyFilterBar({
+// Backward-compatible prop aliases
+export type MonthlyFilterBarProps = DeliveryFilterBarProps;
+export type FilterBarProps = DeliveryFilterBarProps;
+
+export function DeliveryFilterBar({
   filters,
   onChange,
-  productOptions = MONTHLY_FILTER_OPTIONS.products,
-  materialOptions = MONTHLY_FILTER_OPTIONS.materials,
-  buyerOptions = MONTHLY_FILTER_OPTIONS.buyers,
-  colorOptions = MONTHLY_FILTER_OPTIONS.colors,
-  yearOptions = MONTHLY_FILTER_OPTIONS.years,
-}: MonthlyFilterBarProps) {
-  const config = useMemo<FilterConfig<MonthlyFilterState>[]>(
+  productOptions = [],
+  materialOptions = [],
+  buyerOptions = [],
+  colorOptions = [],
+  yearOptions = [],
+}: DeliveryFilterBarProps) {
+  const config = useMemo<FilterConfig<DeliveryFilterState>[]>(
     () => [
       {
         key: "product",
@@ -73,7 +80,10 @@ export function MonthlyFilterBar({
     [productOptions, materialOptions, buyerOptions, colorOptions, yearOptions]
   );
 
-  return <DynamicFilterBar<MonthlyFilterState> filters={filters} config={config} onChange={onChange} />;
+  return <DynamicFilterBar<DeliveryFilterState> filters={filters} config={config} onChange={onChange} />;
 }
 
-export default MonthlyFilterBar;
+export const FilterBar = DeliveryFilterBar;
+export const MonthlyFilterBar = DeliveryFilterBar;
+export default DeliveryFilterBar;
+
