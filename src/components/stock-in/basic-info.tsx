@@ -7,8 +7,8 @@ import {
   ChevronsUpDown,
   ChevronUp,
   Plus,
-  X,
 } from "lucide-react";
+import { useOptionalStockIn } from "./stock-in-context";
 
 export interface FGProductItem {
   id: number;
@@ -75,7 +75,8 @@ export function BasicInfo() {
   const defaultProductionDate = formatDisplayDate(today);
   const defaultExpiryDate = formatDisplayDate(nextYear);
 
-  const [products, setProducts] = useState<FGProductItem[]>([
+  const stockInCtx = useOptionalStockIn();
+  const [internalProducts, setInternalProducts] = useState<FGProductItem[]>([
     {
       id: 1,
       name: "FG Product 1",
@@ -92,6 +93,9 @@ export function BasicInfo() {
       selectedSizes: [],
     },
   ]);
+
+  const products = stockInCtx ? stockInCtx.products : internalProducts;
+  const setProducts = stockInCtx ? stockInCtx.setProducts : setInternalProducts;
 
   const [activeProductId, setActiveProductId] = useState<number>(1);
   const [customSizeInput, setCustomSizeInput] = useState<string>("");

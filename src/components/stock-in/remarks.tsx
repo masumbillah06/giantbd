@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { useOptionalStockIn } from "./stock-in-context";
 
 interface RemarksProps {
   value?: string;
@@ -9,15 +10,25 @@ interface RemarksProps {
 }
 
 export function Remarks({ value: propValue, onChange }: RemarksProps) {
+  const stockInCtx = useOptionalStockIn();
   const [isOpen, setIsOpen] = useState(true);
   const [internalValue, setInternalValue] = useState("");
 
-  const currentValue = propValue !== undefined ? propValue : internalValue;
+  const currentValue =
+    propValue !== undefined
+      ? propValue
+      : stockInCtx
+      ? stockInCtx.remarks
+      : internalValue;
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value;
     if (propValue === undefined) {
-      setInternalValue(newValue);
+      if (stockInCtx) {
+        stockInCtx.setRemarks(newValue);
+      } else {
+        setInternalValue(newValue);
+      }
     }
     onChange?.(newValue);
   };

@@ -1,54 +1,25 @@
 "use client";
 
 import React from "react";
+import { FormActionBar, type FormActionBarProps } from "@/components/ui/form-action-bar";
+import { useOptionalStockIn } from "./stock-in-context";
 
-interface StockInActionsProps {
-  onReset?: () => void;
-  onPreview?: () => void;
-  onCreate?: () => void;
-  isLoading?: boolean;
-}
+export type StockInActionsProps = FormActionBarProps;
 
-export function StockInActions({
-  onReset,
-  onPreview,
-  onCreate,
-  isLoading = false,
-}: StockInActionsProps) {
+export function StockInActions(props: StockInActionsProps) {
+  const ctx = useOptionalStockIn();
+
   return (
-    <div className="w-full rounded-2xl border border-slate-200/90 bg-white p-4 shadow-xs flex items-center justify-end gap-3">
-      {/* Reset Button */}
-      <button
-        type="button"
-        onClick={onReset}
-        disabled={isLoading}
-        className="min-w-[120px] px-8 py-2.5 rounded-lg border border-[#eab308] text-[#ca8a04] bg-white hover:bg-amber-50/70 text-sm font-semibold transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-amber-300 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        Reset
-      </button>
-
-      {/* Preview Button */}
-      <button
-        type="button"
-        onClick={onPreview}
-        disabled={isLoading}
-        className="min-w-[120px] px-8 py-2.5 rounded-lg bg-[#489b6b] hover:bg-[#3d8559] text-white text-sm font-semibold transition-all cursor-pointer shadow-xs focus:outline-none focus:ring-2 focus:ring-emerald-300 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        Preview
-      </button>
-
-      {/* Create Button */}
-      <button
-        type="button"
-        onClick={onCreate}
-        disabled={isLoading}
-        className="min-w-[120px] px-8 py-2.5 rounded-lg bg-[#5066be] hover:bg-[#4357a7] text-white text-sm font-semibold transition-all cursor-pointer shadow-xs focus:outline-none focus:ring-2 focus:ring-indigo-300 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {isLoading ? "Creating..." : "Create"}
-      </button>
-    </div>
+    <FormActionBar
+      submitLabel="Create"
+      loadingLabel="Creating..."
+      onReset={props.onReset ?? ctx?.resetForm}
+      onPreview={props.onPreview ?? ctx?.handlePreview}
+      onCreate={props.onCreate ?? props.onSubmit ?? ctx?.handleCreate}
+      isLoading={props.isLoading ?? ctx?.isLoading}
+      {...props}
+    />
   );
 }
 
 export default StockInActions;
-

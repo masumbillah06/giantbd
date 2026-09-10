@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { ChevronDown, ChevronUp, FileText, Plus, Trash2, Upload } from "lucide-react";
+import { ChevronDown, ChevronUp, FileText, Plus, Trash2 } from "lucide-react";
+import { useOptionalStockIn } from "./stock-in-context";
 
 export interface DocumentItem {
   id: string;
@@ -16,10 +17,13 @@ interface DocumentsProps {
 }
 
 export function Documents({ onDocumentsChange }: DocumentsProps) {
+  const stockInCtx = useOptionalStockIn();
   const [isOpen, setIsOpen] = useState(true);
   const [docName, setDocName] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [documents, setDocuments] = useState<DocumentItem[]>([]);
+  const [internalDocuments, setInternalDocuments] = useState<DocumentItem[]>([]);
+  const documents = stockInCtx ? stockInCtx.documents : internalDocuments;
+  const setDocuments = stockInCtx ? stockInCtx.setDocuments : setInternalDocuments;
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
