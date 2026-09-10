@@ -2,6 +2,12 @@
 
 import React, { useState } from "react";
 import { ChevronDown, ChevronsUpDown, ChevronUp, Plus, X } from "lucide-react";
+import {
+  DEFAULT_MASTER_OPTIONS,
+  DEFAULT_COLOR_OPTIONS,
+  DEFAULT_GENDER_OPTIONS,
+  DEFAULT_SIZES,
+} from "@/lib/constants/inventory-options";
 
 export interface StockOutProductItem {
   id: number;
@@ -21,36 +27,6 @@ export interface StockOutProductDetailsProps {
   colorOptions?: string[];
   genderOptions?: string[];
 }
-
-const DEFAULT_MASTER_OPTIONS = [
-  { value: "AlphaShoe", label: "AlphaShoe" },
-  { value: "BetaBag", label: "BetaBag" },
-  { value: "GammaGlove", label: "GammaGlove" },
-  { value: "DeltaHat", label: "DeltaHat" },
-  { value: "EpsilonJacket", label: "EpsilonJacket" },
-  { value: "ZetaBoots", label: "ZetaBoots" },
-  { value: "test000", label: "test000" },
-  { value: "test001", label: "test001" },
-  { value: "test002", label: "test002" },
-  { value: "test003", label: "test003" },
-];
-
-const DEFAULT_COLOR_OPTIONS = [
-  "Black",
-  "White",
-  "Blue",
-  "Red",
-  "Silver",
-  "Navy",
-  "Gray",
-  "Brown",
-  "Green",
-  "Yellow",
-];
-
-const DEFAULT_GENDER_OPTIONS = ["Men", "Women", "Unisex", "Kids"];
-
-const DEFAULT_SIZES = ["36", "38", "40", "42", "44", "46", "48"];
 
 export function ProductDetails({
   products: initialProducts,

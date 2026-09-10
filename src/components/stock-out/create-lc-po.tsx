@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ChevronDown, ChevronsUpDown, ChevronUp, Check } from "lucide-react";
+import { DEFAULT_BUYERS, DEFAULT_LCS } from "@/lib/constants/inventory-options";
 
 export interface CreateLcPoProps {
   onLcCreate?: (data: { lcNo: string; buyer: string }) => void;
@@ -9,23 +10,6 @@ export interface CreateLcPoProps {
   buyerOptions?: string[];
   lcOptions?: string[];
 }
-
-const DEFAULT_BUYERS = [
-  "H&M",
-  "Zara",
-  "Walmart",
-  "Target",
-  "Marks & Spencer",
-  "Nike",
-  "Adidas",
-];
-
-const DEFAULT_LCS = [
-  "LC-2026-001",
-  "LC-2026-002",
-  "LC-2026-003",
-  "LC-2026-004",
-];
 
 export function CreateLcPo({
   onLcCreate,

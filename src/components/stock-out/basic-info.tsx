@@ -2,6 +2,12 @@
 
 import React, { useState } from "react";
 import { Calendar, ChevronDown, ChevronsUpDown, ChevronUp } from "lucide-react";
+import {
+  DEFAULT_LCS,
+  DEFAULT_POS_MAP,
+  DEFAULT_BUYERS,
+  DEFAULT_LOCATIONS,
+} from "@/lib/constants/inventory-options";
 
 export interface BasicInfoData {
   shipmentLc: string;
@@ -19,38 +25,6 @@ export interface StockOutBasicInfoProps {
   buyerOptions?: string[];
   toLocationOptions?: string[];
 }
-
-const DEFAULT_LCS = [
-  "LC-2026-001",
-  "LC-2026-002",
-  "LC-2026-003",
-  "LC-2026-004",
-];
-
-const DEFAULT_POS_MAP: Record<string, string[]> = {
-  "LC-2026-001": ["PO-88310", "PO-88311"],
-  "LC-2026-002": ["PO-88320", "PO-88321"],
-  "LC-2026-003": ["PO-88330"],
-  "LC-2026-004": ["PO-88340"],
-};
-
-const DEFAULT_BUYERS = [
-  "H&M",
-  "Zara",
-  "Walmart",
-  "Target",
-  "Marks & Spencer",
-  "Nike",
-  "Adidas",
-];
-
-const DEFAULT_LOCATIONS = [
-  "Warehouse North (Dhaka)",
-  "Central Hub (Chittagong)",
-  "Export Dock 3 (Gazipur)",
-  "Retail Outlet Dhaka-1",
-  "Client Distribution Center",
-];
 
 export function BasicInfo({
   data,

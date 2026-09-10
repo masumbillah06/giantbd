@@ -9,6 +9,12 @@ import {
   Plus,
 } from "lucide-react";
 import { useOptionalStockIn } from "./stock-in-context";
+import {
+  MASTER_PRODUCT_OPTIONS,
+  COLOR_OPTIONS,
+  GENDER_OPTIONS,
+  DEFAULT_SIZES,
+} from "@/lib/constants/inventory-options";
 
 export interface FGProductItem {
   id: number;
@@ -26,35 +32,6 @@ export interface FGProductItem {
   selectedSizes: string[];
 }
 
-const MASTER_PRODUCT_OPTIONS = [
-  { value: "AlphaShoe", label: "AlphaShoe", material: "Leather + Rubber", model: "MOD-ALP" },
-  { value: "BetaBag", label: "BetaBag", material: "Canvas + Suede", model: "MOD-BET" },
-  { value: "GammaGlove", label: "GammaGlove", material: "Wool + Acrylic", model: "MOD-GAM" },
-  { value: "DeltaHat", label: "DeltaHat", material: "Cotton + Polyester", model: "MOD-DEL" },
-  { value: "EpsilonJacket", label: "EpsilonJacket", material: "Nylon + Mesh", model: "MOD-EPS" },
-  { value: "ZetaBoots", label: "ZetaBoots", material: "Leather + Rubber", model: "MOD-ZET" },
-  { value: "test000", label: "test000", material: "Aluminium + Plastic", model: "MOD-T00" },
-  { value: "test001", label: "test001", material: "Aluminium + Plastic", model: "MOD-T01" },
-  { value: "test002", label: "test002", material: "Silicon + Glass", model: "MOD-T02" },
-  { value: "test003", label: "test003", material: "Plastic + Copper", model: "MOD-T03" },
-];
-
-const COLOR_OPTIONS = [
-  "Black",
-  "White",
-  "Blue",
-  "Red",
-  "Silver",
-  "Navy",
-  "Gray",
-  "Brown",
-  "Green",
-  "Yellow",
-];
-
-const GENDER_OPTIONS = ["Men", "Women", "Unisex", "Kids"];
-
-const DEFAULT_SIZES = ["36", "38", "40", "42", "44", "46", "48"];
 
 export function BasicInfo() {
   const [isSectionOpen, setIsSectionOpen] = useState(true);
