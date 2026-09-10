@@ -16,9 +16,6 @@ const DEFAULT_ITEMS: SearchItem[] = [
   { id: "monthly-delivery", path: ["Warehouse FG", "FG Report", "Monthly Delivery"] },
   { id: "delivery-summary", path: ["Warehouse FG", "FG Report", "Delivery Summary"] },
   { id: "stock-aging", path: ["Warehouse FG", "FG Report", "Stock Aging"] },
-  { id: "stock-aging-green", path: ["Warehouse FG", "FG Report", "Stock Aging", "Green"] },
-  { id: "stock-aging-yellow", path: ["Warehouse FG", "FG Report", "Stock Aging", "Yellow"] },
-  { id: "stock-aging-red", path: ["Warehouse FG", "FG Report", "Stock Aging", "Red"] },
 ];
 
 interface SearchDropdownProps {

@@ -32,14 +32,7 @@ export const sidebarNav: NavItem[] = [
           { label: "Weekly Delivery", href: "/inventory/fg-reports/weekly-delivery" },
           { label: "Monthly Delivery", href: "/inventory/fg-reports/monthly-delivery" },
           { label: "Delivery Summary", href: "/inventory/fg-reports/delivery-summary" },
-          {
-            label: "Stock Aging",
-            children: [
-              { label: "Green", href: "/inventory/fg-reports/stock-aging/green" },
-              { label: "Yellow", href: "/inventory/fg-reports/stock-aging/yellow" },
-              { label: "Red", href: "/inventory/fg-reports/stock-aging/red" },
-            ],
-          },
+          { label: "Stock Aging", href: "/inventory/fg-reports/stock-aging" },
           { label: "FG Master Stock", href: "/inventory/fg-reports/fg-master-stock" },
           { label: "Location Wise Stock", href: "/inventory/fg-reports/location-wise-stock" },
           { label: "Batch Product List", href: "/inventory/fg-reports/batch-product-list" },
