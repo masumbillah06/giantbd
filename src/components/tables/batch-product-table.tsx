@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
-import ReusableTable from "./ReusableTable";
+import React from "react";
+import PaginatedTable from "./paginated-table";
 import type { ColumnDef } from "./ReusableTable.types";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
-import Pagination from "@/components/ui/pagination";
 import { Eye, SlidersHorizontal, MapPin, Download } from "lucide-react";
 import {
   batchProductData as defaultBatchProductData,
@@ -159,105 +158,56 @@ export function BatchProductTable({
   onLocation,
   onDownload,
 }: BatchProductTableProps) {
-  const [selectedIds, setSelectedIds] = useState<Array<BatchProductItem["id"]>>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [actionNotice, setActionNotice] = useState<string | null>(null);
-
-  const totalPages = Math.max(1, Math.ceil(data.length / pageSize));
-
-  // Slice rows for the active page
-  const pageData = useMemo(() => {
-    const start = (currentPage - 1) * pageSize;
-    return data.slice(start, start + pageSize);
-  }, [data, currentPage, pageSize]);
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    setSelectedIds([]);
-  };
-
-  const notify = (msg: string) => {
-    setActionNotice(msg);
-    setTimeout(() => setActionNotice(null), 3500);
-  };
-
   return (
-    <div className="space-y-4">
-      {/* Toast Feedback */}
-      {actionNotice && (
-        <div className="flex items-center justify-between rounded-lg border border-blue-200 bg-blue-50 px-4 py-2.5 text-xs text-blue-800 sm:text-sm">
-          <span>{actionNotice}</span>
-          <button
-            type="button"
-            onClick={() => setActionNotice(null)}
-            className="ml-3 cursor-pointer text-xs font-semibold hover:opacity-75"
-          >
-            Dismiss
-          </button>
-        </div>
+    <PaginatedTable<BatchProductItem>
+      data={data}
+      columns={columns}
+      pageSize={pageSize}
+      minWidth="2200px"
+      actionsLabel="Action"
+      renderActions={(row, notify) => (
+        <ActionButtonGroup aria-label={`Actions for product ${row.id}`}>
+          <ActionButton
+            label="View Product Details"
+            icon={Eye}
+            className="!rounded-full border border-slate-200/80 bg-white text-slate-700 hover:bg-slate-100"
+            onClick={() => {
+              onView?.(row);
+              notify(`Viewing product: ${row.productName} (${row.batchNo})`);
+            }}
+          />
+          <ActionButton
+            label="Adjust Batch Item"
+            icon={SlidersHorizontal}
+            className="!rounded-full border border-slate-200/80 bg-white text-slate-700 hover:bg-slate-100"
+            onClick={() => {
+              onAdjust?.(row);
+              notify(`Adjusting stock for: ${row.productName}`);
+            }}
+          />
+          <ActionButton
+            label="View Location"
+            icon={MapPin}
+            className="!rounded-full border border-slate-200/80 bg-white text-slate-700 hover:bg-slate-100"
+            onClick={() => {
+              onLocation?.(row);
+              notify(
+                `Location: ${row.warehouse} > ${row.zone} > ${row.subZone} > ${row.rack}`
+              );
+            }}
+          />
+          <ActionButton
+            label="Download Item Report"
+            icon={Download}
+            className="!rounded-full border border-slate-200/80 bg-white text-slate-700 hover:bg-slate-100"
+            onClick={() => {
+              onDownload?.(row);
+              notify(`Downloading item report for batch ${row.batchNo}...`);
+            }}
+          />
+        </ActionButtonGroup>
       )}
-
-      {/* Reusable Table */}
-      <div className="bg-[var(--color-bg)]">
-        <ReusableTable<BatchProductItem>
-          data={pageData}
-          columns={columns}
-          selectedIds={selectedIds}
-          onSelectionChange={setSelectedIds}
-          actionsLabel="Action"
-          minWidth="2200px"
-          renderActions={(row) => (
-            <ActionButtonGroup aria-label={`Actions for product ${row.id}`}>
-              <ActionButton
-                label="View Product Details"
-                icon={Eye}
-                className="!rounded-full border border-slate-200/80 bg-white text-slate-700 hover:bg-slate-100"
-                onClick={() => {
-                  onView?.(row);
-                  notify(`Viewing product: ${row.productName} (${row.batchNo})`);
-                }}
-              />
-              <ActionButton
-                label="Adjust Batch Item"
-                icon={SlidersHorizontal}
-                className="!rounded-full border border-slate-200/80 bg-white text-slate-700 hover:bg-slate-100"
-                onClick={() => {
-                  onAdjust?.(row);
-                  notify(`Adjusting stock for: ${row.productName}`);
-                }}
-              />
-              <ActionButton
-                label="View Location"
-                icon={MapPin}
-                className="!rounded-full border border-slate-200/80 bg-white text-slate-700 hover:bg-slate-100"
-                onClick={() => {
-                  onLocation?.(row);
-                  notify(
-                    `Location: ${row.warehouse} > ${row.zone} > ${row.subZone} > ${row.rack}`
-                  );
-                }}
-              />
-              <ActionButton
-                label="Download Item Report"
-                icon={Download}
-                className="!rounded-full border border-slate-200/80 bg-white text-slate-700 hover:bg-slate-100"
-                onClick={() => {
-                  onDownload?.(row);
-                  notify(`Downloading item report for batch ${row.batchNo}...`);
-                }}
-              />
-            </ActionButtonGroup>
-          )}
-        />
-      </div>
-
-      {/* Pagination Bar */}
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-    </div>
+    />
   );
 }
 

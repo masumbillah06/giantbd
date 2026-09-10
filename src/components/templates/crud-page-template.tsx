@@ -4,8 +4,7 @@ import React, { useState, useMemo } from "react";
 import DashboardShell from "@/components/layout/dashboard-shell";
 import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
 import TableToolbar from "@/components/ui/table-toolbar";
-import ReusableTable from "@/components/tables/ReusableTable";
-import Pagination from "@/components/ui/pagination";
+import PaginatedTable from "@/components/tables/paginated-table";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { Eye, PenSquareIcon, Trash2 } from "lucide-react";
@@ -17,14 +16,17 @@ export interface CrudBreadcrumbItem {
 }
 
 export interface CrudPageTemplateProps<T extends RowBase> {
-  title: string;
+  title?: string;
   breadcrumbLabel?: string;
   breadcrumbItems?: CrudBreadcrumbItem[];
   data: T[];
   columns: ColumnDef<T>[];
   minWidth?: string;
   withShell?: boolean;
+  withTopBar?: boolean;
   searchFilterKeys?: Array<keyof T>;
+  pageSize?: number;
+  actionsLabel?: string;
   onView?: (row: T) => void;
   onEdit?: (row: T) => void;
   onDelete?: (row: T) => void;
@@ -37,14 +39,17 @@ export interface CrudPageTemplateProps<T extends RowBase> {
 }
 
 export function CrudPageTemplate<T extends RowBase>({
-  title,
+  title = "",
   breadcrumbLabel,
   breadcrumbItems,
   data,
   columns,
   minWidth = "900px",
   withShell = true,
+  withTopBar = true,
   searchFilterKeys,
+  pageSize: initialPageSize = 10,
+  actionsLabel = "Action",
   onView,
   onEdit,
   onDelete,
@@ -57,8 +62,7 @@ export function CrudPageTemplate<T extends RowBase>({
 }: CrudPageTemplateProps<T>) {
   const [selectedIds, setSelectedIds] = useState<Array<T["id"]>>([]);
   const [searchValue, setSearchValue] = useState("");
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(initialPageSize);
 
   // Resolved breadcrumbs
   const resolvedBreadcrumbs: CrudBreadcrumbItem[] = useMemo(() => {
@@ -86,86 +90,65 @@ export function CrudPageTemplate<T extends RowBase>({
     });
   }, [data, searchValue, searchFilterKeys]);
 
-  // Pagination calculation
-  const totalPages = Math.max(1, Math.ceil(filteredData.length / pageSize));
-  const currentPage = Math.min(page, totalPages);
-
-  const paginatedData = useMemo(() => {
-    const start = (currentPage - 1) * pageSize;
-    return filteredData.slice(start, start + pageSize);
-  }, [filteredData, currentPage, pageSize]);
-
   const content = (
     <div className="space-y-4">
       {/* Top Bar: Breadcrumb + TableToolbar */}
-      <div className="min-h-20 w-full flex flex-col md:flex-row justify-between items-center bg-white shadow-sm rounded-xl px-4 py-2 gap-2">
-        <div className="w-full md:w-auto">
-          <Breadcrumb title={title} items={resolvedBreadcrumbs} />
-        </div>
-        <div className="w-full md:w-auto flex-1 flex justify-end">
-          <TableToolbar
-            searchValue={searchValue}
-            onSearchChange={setSearchValue}
-            searchPlaceholder={`Search ${title.toLowerCase()}...`}
-            pageSize={pageSize}
-            onPageSizeChange={(size) => {
-              setPageSize(size);
-              setPage(1);
-            }}
-            onReload={onReload}
-            onExport={onExport}
-            onPrint={onPrint}
-            onNew={onNew}
-            newButtonLabel={newButtonLabel || "New"}
-          />
-        </div>
-      </div>
-
-      {/* Table Card */}
-      <div className="mt-4">
-        <div className="bg-[var(--color-bg)]">
-          <ReusableTable<T>
-            data={paginatedData}
-            columns={columns}
-            selectedIds={selectedIds}
-            onSelectionChange={setSelectedIds}
-            renderActions={(row) => {
-              if (customActions) return customActions(row);
-              return (
-                <ActionButtonGroup aria-label={`Actions for ${title.toLowerCase()} ${row.id}`}>
-                  <ActionButton
-                    label={`View ${title}`}
-                    icon={Eye}
-                    onClick={() => onView?.(row)}
-                  />
-                  <ActionButton
-                    label={`Edit ${title}`}
-                    icon={PenSquareIcon}
-                    onClick={() => onEdit?.(row)}
-                  />
-                  <ActionButton
-                    label={`Delete ${title}`}
-                    icon={Trash2}
-                    onClick={() => onDelete?.(row)}
-                  />
-                </ActionButtonGroup>
-              );
-            }}
-            minWidth={minWidth}
-          />
-        </div>
-      </div>
-
-      {/* Pagination Bar */}
-      {filteredData.length > 0 && (
-        <div className="w-full mt-4 flex justify-center">
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={setPage}
-          />
+      {withTopBar && (
+        <div className="min-h-20 w-full flex flex-col md:flex-row justify-between items-center bg-white shadow-sm rounded-xl px-4 py-2 gap-2">
+          <div className="w-full md:w-auto">
+            <Breadcrumb title={title} items={resolvedBreadcrumbs} />
+          </div>
+          <div className="w-full md:w-auto flex-1 flex justify-end">
+            <TableToolbar
+              searchValue={searchValue}
+              onSearchChange={setSearchValue}
+              searchPlaceholder={`Search ${title.toLowerCase()}...`}
+              pageSize={pageSize}
+              onPageSizeChange={setPageSize}
+              onReload={onReload}
+              onExport={onExport}
+              onPrint={onPrint}
+              onNew={onNew}
+              newButtonLabel={newButtonLabel || "New"}
+            />
+          </div>
         </div>
       )}
+
+      {/* Table & Pagination Card */}
+      <div className="mt-4">
+        <PaginatedTable<T>
+          data={filteredData}
+          columns={columns}
+          pageSize={pageSize}
+          minWidth={minWidth}
+          actionsLabel={actionsLabel}
+          selectedIds={selectedIds}
+          onSelectionChange={setSelectedIds}
+          renderActions={(row) => {
+            if (customActions) return customActions(row);
+            return (
+              <ActionButtonGroup aria-label={`Actions for ${title.toLowerCase()} ${row.id}`}>
+                <ActionButton
+                  label={`View ${title}`}
+                  icon={Eye}
+                  onClick={() => onView?.(row)}
+                />
+                <ActionButton
+                  label={`Edit ${title}`}
+                  icon={PenSquareIcon}
+                  onClick={() => onEdit?.(row)}
+                />
+                <ActionButton
+                  label={`Delete ${title}`}
+                  icon={Trash2}
+                  onClick={() => onDelete?.(row)}
+                />
+              </ActionButtonGroup>
+            );
+          }}
+        />
+      </div>
     </div>
   );
 

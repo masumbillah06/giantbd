@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
-import ReusableTable from "./ReusableTable";
+import React from "react";
+import PaginatedTable from "./paginated-table";
 import type { ColumnDef } from "./ReusableTable.types";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
-import Pagination from "@/components/ui/pagination";
 import { PenSquareIcon, Trash2 } from "lucide-react";
 import {
   permissionData as defaultPermissionData,
@@ -184,83 +183,36 @@ export function PermissionTable({
   onEdit,
   onDelete,
 }: PermissionTableProps) {
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [notice, setNotice] = useState<string | null>(null);
-
-  const totalPages = Math.max(1, Math.ceil(data.length / pageSize));
-
-  const pageData = useMemo(() => {
-    const start = (currentPage - 1) * pageSize;
-    return data.slice(start, start + pageSize);
-  }, [data, currentPage, pageSize]);
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    setSelectedIds([]);
-  };
-
-  const notify = (msg: string) => {
-    setNotice(msg);
-    setTimeout(() => setNotice(null), 3000);
-  };
-
   return (
-    <div className="space-y-4">
-      {/* Toast Notice */}
-      {notice && (
-        <div className="rounded-lg bg-blue-50 border border-blue-200 px-4 py-2.5 text-xs sm:text-sm text-blue-800 flex items-center justify-between">
-          <span>{notice}</span>
-          <button
-            type="button"
-            onClick={() => setNotice(null)}
-            className="text-xs font-semibold hover:opacity-75 cursor-pointer ml-3"
-          >
-            Dismiss
-          </button>
-        </div>
+    <PaginatedTable<PermissionRecord>
+      data={data}
+      columns={columns}
+      pageSize={pageSize}
+      minWidth="1650px"
+      actionsLabel="Actions"
+      noticeDuration={3000}
+      renderActions={(row, notify) => (
+        <ActionButtonGroup aria-label={`Actions for module ${row.moduleName}`}>
+          <ActionButton
+            label="Edit Permission"
+            icon={PenSquareIcon}
+            onClick={() => {
+              onEdit?.(row);
+              notify(`Editing permissions for "${row.moduleName}"`);
+            }}
+          />
+          <ActionButton
+            label="Delete Permission"
+            icon={Trash2}
+            variant="danger"
+            onClick={() => {
+              onDelete?.(row);
+              notify(`Deleted permissions for "${row.moduleName}"`);
+            }}
+          />
+        </ActionButtonGroup>
       )}
-
-      {/* Reusable Table */}
-      <div className="bg-[var(--color-bg)]">
-        <ReusableTable<PermissionRecord>
-          data={pageData}
-          columns={columns}
-          selectedIds={selectedIds}
-          onSelectionChange={setSelectedIds}
-          actionsLabel="Actions"
-          minWidth="1650px"
-          renderActions={(row) => (
-            <ActionButtonGroup aria-label={`Actions for module ${row.moduleName}`}>
-              <ActionButton
-                label="Edit Permission"
-                icon={PenSquareIcon}
-                onClick={() => {
-                  onEdit?.(row);
-                  notify(`Editing permissions for "${row.moduleName}"`);
-                }}
-              />
-              <ActionButton
-                label="Delete Permission"
-                icon={Trash2}
-                variant="danger"
-                onClick={() => {
-                  onDelete?.(row);
-                  notify(`Deleted permissions for "${row.moduleName}"`);
-                }}
-              />
-            </ActionButtonGroup>
-          )}
-        />
-      </div>
-
-      {/* Pagination Controls */}
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-    </div>
+    />
   );
 }
 

@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
-import ReusableTable from "./ReusableTable";
+import React from "react";
+import PaginatedTable from "./paginated-table";
 import type { ColumnDef } from "./ReusableTable.types";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
-import Pagination from "@/components/ui/pagination";
 import { Eye, FileText, Truck, Package, Check } from "lucide-react";
 import {
   stockOutData as defaultStockOutData,
@@ -122,116 +121,67 @@ export function StockOutTable({
   onDispatch,
   onPackage,
 }: StockOutTableProps) {
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [actionNotice, setActionNotice] = useState<string | null>(null);
-
-  const totalPages = Math.max(1, Math.ceil(data.length / pageSize));
-
-  // Slice rows for the active page
-  const pageData = useMemo(() => {
-    const start = (currentPage - 1) * pageSize;
-    return data.slice(start, start + pageSize);
-  }, [data, currentPage, pageSize]);
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    setSelectedIds([]);
-  };
-
-  const notify = (msg: string) => {
-    setActionNotice(msg);
-    setTimeout(() => setActionNotice(null), 3500);
-  };
-
   return (
-    <div className="space-y-4">
-      {/* Toast Feedback */}
-      {actionNotice && (
-        <div className="rounded-lg bg-blue-50 border border-blue-200 px-4 py-2.5 text-xs sm:text-sm text-blue-800 flex items-center justify-between">
-          <span>{actionNotice}</span>
-          <button
-            type="button"
-            onClick={() => setActionNotice(null)}
-            className="text-xs font-semibold hover:opacity-75 cursor-pointer ml-3"
-          >
-            Dismiss
-          </button>
-        </div>
-      )}
+    <PaginatedTable<StockOutItem>
+      data={data}
+      columns={columns}
+      pageSize={pageSize}
+      minWidth="1200px"
+      actionsLabel="Action"
+      renderActions={(row, notify) => (
+        <ActionButtonGroup aria-label={`Actions for record ${row.id}`}>
+          {/* Always show View */}
+          <ActionButton
+            label="View Stock Out"
+            icon={Eye}
+            className="!rounded-full border border-slate-200/80 bg-white hover:bg-slate-100 text-slate-700"
+            onClick={() => {
+              onView?.(row);
+              notify(`Viewing stock out record #${row.id} (${row.lcNo})`);
+            }}
+          />
 
-      {/* Reusable Table */}
-      <div className="bg-[var(--color-bg)]">
-        <ReusableTable<StockOutItem>
-          data={pageData}
-          columns={columns}
-          selectedIds={selectedIds}
-          onSelectionChange={setSelectedIds}
-          actionsLabel="Action"
-          minWidth="1200px"
-          renderActions={(row) => (
-            <ActionButtonGroup aria-label={`Actions for record ${row.id}`}>
-              {/* Always show View */}
-              <ActionButton
-                label="View Stock Out"
-                icon={Eye}
-                className="!rounded-full border border-slate-200/80 bg-white hover:bg-slate-100 text-slate-700"
-                onClick={() => {
-                  onView?.(row);
-                  notify(`Viewing stock out record #${row.id} (${row.lcNo})`);
-                }}
-              />
-
-              {/* Show Document for Issued and Received */}
-              {(row.status === "Issued" || row.status === "Received") && (
-                <ActionButton
-                  label={row.status === "Issued" ? "Delivery Note / Gate Pass" : "Receipt Document"}
-                  icon={FileText}
-                  className="!rounded-full border border-slate-200/80 bg-white hover:bg-slate-100 text-slate-700"
-                  onClick={() => {
-                    onDocument?.(row);
-                    notify(`Opening document for #${row.id}`);
-                  }}
-                />
-              )}
-
-              {/* Show Truck / Dispatch for Issued and Received */}
-              {(row.status === "Issued" || row.status === "Received") && (
-                <ActionButton
-                  label="Dispatch / Shipment Details"
-                  icon={Truck}
-                  className="!rounded-full border border-slate-200/80 bg-white hover:bg-slate-100 text-slate-700"
-                  onClick={() => {
-                    onDispatch?.(row);
-                    notify(`Viewing shipment details for #${row.id}`);
-                  }}
-                />
-              )}
-
-              {/* Show Package for Issued */}
-              {row.status === "Issued" && (
-                <ActionButton
-                  label="Package Details"
-                  icon={Package}
-                  className="!rounded-full border border-slate-200/80 bg-white hover:bg-slate-100 text-slate-700"
-                  onClick={() => {
-                    onPackage?.(row);
-                    notify(`Viewing package breakdown for #${row.id}`);
-                  }}
-                />
-              )}
-            </ActionButtonGroup>
+          {/* Show Document for Issued and Received */}
+          {(row.status === "Issued" || row.status === "Received") && (
+            <ActionButton
+              label={row.status === "Issued" ? "Delivery Note / Gate Pass" : "Receipt Document"}
+              icon={FileText}
+              className="!rounded-full border border-slate-200/80 bg-white hover:bg-slate-100 text-slate-700"
+              onClick={() => {
+                onDocument?.(row);
+                notify(`Opening document for #${row.id}`);
+              }}
+            />
           )}
-        />
-      </div>
 
-      {/* Pagination Bar */}
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-    </div>
+          {/* Show Truck / Dispatch for Issued and Received */}
+          {(row.status === "Issued" || row.status === "Received") && (
+            <ActionButton
+              label="Dispatch / Shipment Details"
+              icon={Truck}
+              className="!rounded-full border border-slate-200/80 bg-white hover:bg-slate-100 text-slate-700"
+              onClick={() => {
+                onDispatch?.(row);
+                notify(`Viewing shipment details for #${row.id}`);
+              }}
+            />
+          )}
+
+          {/* Show Package for Issued */}
+          {row.status === "Issued" && (
+            <ActionButton
+              label="Package Details"
+              icon={Package}
+              className="!rounded-full border border-slate-200/80 bg-white hover:bg-slate-100 text-slate-700"
+              onClick={() => {
+                onPackage?.(row);
+                notify(`Viewing package breakdown for #${row.id}`);
+              }}
+            />
+          )}
+        </ActionButtonGroup>
+      )}
+    />
   );
 }
 
