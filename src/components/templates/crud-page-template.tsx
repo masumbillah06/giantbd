@@ -158,7 +158,7 @@ export function CrudPageTemplate<T extends RowBase>({
 
       {/* Pagination Bar */}
       {filteredData.length > 0 && (
-        <div className="mt-4 flex justify-end">
+        <div className="w-full mt-4 flex justify-center">
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}

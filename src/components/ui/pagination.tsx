@@ -83,7 +83,7 @@ export default function Pagination({
   return (
     <div
       className={cn(
-        "flex items-center justify-center gap-1 rounded-xl bg-white px-4 py-3 shadow-sm",
+        "w-full flex items-center justify-center gap-1 rounded-xl bg-white px-4 py-3 shadow-sm",
         className
       )}
     >
