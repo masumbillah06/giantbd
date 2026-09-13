@@ -3,7 +3,15 @@
 import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
 import NavCh from "@/components/ui/nav-child";
 import FilterCard from "@/components/ui/filter-card";
-import BatchProductTable from "@/components/tables/batch-product-table";
+import PaginatedTable from "@/components/tables/paginated-table";
+import { ActionButton } from "@/components/ui/buttons/action-button";
+import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
+import { Eye, SlidersHorizontal, MapPin, Download } from "lucide-react";
+import {
+  batchProductData,
+  batchProductColumns,
+  type BatchProductItem,
+} from "@/lib/product-data/batch-product-data";
 
 export default function BatchProductListPage() {
   return (
@@ -41,7 +49,51 @@ export default function BatchProductListPage() {
 
       {/* ── Batch Product Table with Pagination ── */}
       <div className="mt-4">
-        <BatchProductTable pageSize={10} />
+        <PaginatedTable<BatchProductItem>
+          data={batchProductData}
+          columns={batchProductColumns}
+          pageSize={10}
+          minWidth="2200px"
+          actionsLabel="Action"
+          renderActions={(row, notify) => (
+            <ActionButtonGroup aria-label={`Actions for product ${row.id}`}>
+              <ActionButton
+                label="View Product Details"
+                icon={Eye}
+                className="!rounded-full border border-slate-200/80 bg-white text-slate-700 hover:bg-slate-100"
+                onClick={() => {
+                  notify(`Viewing product: ${row.productName} (${row.batchNo})`);
+                }}
+              />
+              <ActionButton
+                label="Adjust Batch Item"
+                icon={SlidersHorizontal}
+                className="!rounded-full border border-slate-200/80 bg-white text-slate-700 hover:bg-slate-100"
+                onClick={() => {
+                  notify(`Adjusting stock for: ${row.productName}`);
+                }}
+              />
+              <ActionButton
+                label="View Location"
+                icon={MapPin}
+                className="!rounded-full border border-slate-200/80 bg-white text-slate-700 hover:bg-slate-100"
+                onClick={() => {
+                  notify(
+                    `Location: ${row.warehouse} > ${row.zone} > ${row.subZone} > ${row.rack}`
+                  );
+                }}
+              />
+              <ActionButton
+                label="Download Item Report"
+                icon={Download}
+                className="!rounded-full border border-slate-200/80 bg-white text-slate-700 hover:bg-slate-100"
+                onClick={() => {
+                  notify(`Downloading item report for batch ${row.batchNo}...`);
+                }}
+              />
+            </ActionButtonGroup>
+          )}
+        />
       </div>
     </>
   );

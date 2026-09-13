@@ -3,6 +3,9 @@
 // Seeded directly from reference records & expanded with realistic stock out entries
 // ---------------------------------------------------------------------------
 
+import { Check } from "lucide-react";
+import type { ColumnDef } from "@/components/tables/ReusableTable.types";
+
 export type StockOutStatus = "Issued" | "Pending" | "Received";
 export type StockOutLabel = "issued" | "pending" | "received";
 
@@ -18,6 +21,98 @@ export interface StockOutItem {
   products: number;
   status: StockOutStatus;
 }
+
+export const stockOutColumns: ColumnDef<StockOutItem>[] = [
+  {
+    key: "label",
+    label: "Label",
+    render: (row) => {
+      if (row.label === "issued") {
+        return (
+          <span
+            title="Issued"
+            className="inline-flex h-5 w-5 items-center justify-center rounded-sm bg-emerald-50 text-emerald-600 border border-emerald-300"
+          >
+            <Check className="h-3 w-3 stroke-[2.5]" />
+          </span>
+        );
+      }
+      if (row.label === "pending") {
+        return (
+          <span
+            title="Pending"
+            className="inline-flex h-5 w-5 items-center justify-center rounded-sm bg-amber-50 text-amber-500 border border-amber-300 text-xs font-bold leading-none"
+          >
+            !
+          </span>
+        );
+      }
+      return (
+        <span
+          title="Received"
+          className="inline-flex h-5 w-5 items-center justify-center rounded-sm bg-[#3b66c4] text-white"
+        >
+          <Check className="h-3 w-3 stroke-[2.5]" />
+        </span>
+      );
+    },
+  },
+  {
+    key: "lcNo",
+    label: "LC No",
+    cellClassName: "whitespace-nowrap px-5 py-2 text-sm text-slate-950 group-hover:text-white font-medium",
+  },
+  {
+    key: "poNo",
+    label: "PO No",
+    cellClassName: "whitespace-nowrap px-5 py-2 text-sm text-slate-950 group-hover:text-white font-medium",
+  },
+  {
+    key: "buyer",
+    label: "Buyer",
+  },
+  {
+    key: "destination",
+    label: "Destination",
+  },
+  {
+    key: "reqCreatedBy",
+    label: "Req. Created By",
+  },
+  {
+    key: "reqDate",
+    label: "Req. Date",
+  },
+  {
+    key: "products",
+    label: "Products",
+  },
+  {
+    key: "status",
+    label: "Status",
+    render: (row) => {
+      if (row.status === "Issued") {
+        return (
+          <span className="inline-block min-w-[72px] text-center rounded-md bg-[#059669] px-3 py-1 text-xs font-medium text-white shadow-xs">
+            Issued
+          </span>
+        );
+      }
+      if (row.status === "Pending") {
+        return (
+          <span className="inline-block min-w-[72px] text-center rounded-md bg-[#eab308] px-3 py-1 text-xs font-medium text-white shadow-xs">
+            Pending
+          </span>
+        );
+      }
+      return (
+        <span className="inline-block min-w-[72px] text-center rounded-md bg-[#3b66c4] px-3 py-1 text-xs font-medium text-white shadow-xs">
+          Received
+        </span>
+      );
+    },
+  },
+];
 
 /**
  * Exact reference rows from the Stock Out List, ordered by ID descending.

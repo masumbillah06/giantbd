@@ -26,6 +26,8 @@ export interface ColumnDef<T extends RowBase> {
   render?: (row: T) => ReactNode;
   headerClassName?: string;
   cellClassName?: string;
+  /** Alignment of column header and cell text. Defaults to "left". */
+  align?: "left" | "center" | "right";
 }
 
 export interface ReusableTableProps<T extends RowBase> {
@@ -40,11 +42,19 @@ export interface ReusableTableProps<T extends RowBase> {
   onSelectionChange?: (selectedIds: Array<T["id"]>) => void;
   /**
    * Renders the content of the Actions cell for a given row.
-   * If omitted, the Actions column is rendered empty.
+   * If omitted, the Actions column is rendered empty unless showActions is false.
    */
   renderActions?: (row: T) => ReactNode;
   /** Optional label for the Actions column header. Defaults to "Action". */
   actionsLabel?: string;
+  /** Whether to render the Actions column. Defaults to true if renderActions is provided, or true if not explicitly false. */
+  showActions?: boolean;
+  /** Whether to render the selection checkbox column. Defaults to true. */
+  showCheckbox?: boolean;
+  /** Whether to render the built-in ID column. Defaults to true. */
+  showId?: boolean;
+  /** Optional custom header label for the ID column. Defaults to "ID". */
+  idLabel?: string;
   /** Optional minimum width for the table (matches the original `min-w-[...]` behavior). */
   minWidth?: string;
   /** Optional controlled selection (uncontrolled by default). */

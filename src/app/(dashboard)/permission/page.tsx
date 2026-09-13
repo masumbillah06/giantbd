@@ -2,7 +2,15 @@
 
 import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
 import NavCh from "@/components/ui/nav-child";
-import PermissionTable from "@/components/tables/permission-table";
+import PaginatedTable from "@/components/tables/paginated-table";
+import { ActionButton } from "@/components/ui/buttons/action-button";
+import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
+import { PenSquareIcon, Trash2 } from "lucide-react";
+import {
+  PERMISSION_DATA,
+  permissionColumns,
+  type PermissionRecord,
+} from "@/lib/product-data/permission-data";
 
 export default function PermissionPage() {
   return (
@@ -24,7 +32,33 @@ export default function PermissionPage() {
 
       {/* ── Permission Matrix Table ── */}
       <div className="mt-4">
-        <PermissionTable pageSize={10} />
+        <PaginatedTable<PermissionRecord>
+          data={PERMISSION_DATA}
+          columns={permissionColumns}
+          pageSize={10}
+          minWidth="1650px"
+          actionsLabel="Actions"
+          noticeDuration={3000}
+          renderActions={(row, notify) => (
+            <ActionButtonGroup aria-label={`Actions for module ${row.moduleName}`}>
+              <ActionButton
+                label="Edit Permission"
+                icon={PenSquareIcon}
+                onClick={() => {
+                  notify(`Editing permissions for "${row.moduleName}"`);
+                }}
+              />
+              <ActionButton
+                label="Delete Permission"
+                icon={Trash2}
+                variant="danger"
+                onClick={() => {
+                  notify(`Deleted permissions for "${row.moduleName}"`);
+                }}
+              />
+            </ActionButtonGroup>
+          )}
+        />
       </div>
     </>
   );

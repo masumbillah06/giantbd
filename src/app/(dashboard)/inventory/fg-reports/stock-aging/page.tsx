@@ -3,8 +3,15 @@
 import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
 import NavCh from "@/components/ui/nav-child";
 import FilterCard from "@/components/ui/filter-card";
-import StockAgingTable from "@/components/tables/stock-aging-table";
-import { stockAgingData } from "@/lib/product-data/stock-aging-data";
+import PaginatedTable from "@/components/tables/paginated-table";
+import { ActionButton } from "@/components/ui/buttons/action-button";
+import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
+import { Eye, SlidersHorizontal, MapPin, Download } from "lucide-react";
+import {
+  stockAgingData,
+  stockAgingColumns,
+  type StockAgingItem,
+} from "@/lib/product-data/stock-aging-data";
 
 export default function StockAgingOverviewPage() {
   return (
@@ -42,7 +49,49 @@ export default function StockAgingOverviewPage() {
 
       {/* ── Stock Aging Table with Pagination ── */}
       <div className="mt-4">
-        <StockAgingTable data={stockAgingData} pageSize={10} />
+        <PaginatedTable<StockAgingItem>
+          data={stockAgingData}
+          columns={stockAgingColumns}
+          pageSize={10}
+          minWidth="2300px"
+          actionsLabel="Action"
+          renderActions={(row, notify) => (
+            <ActionButtonGroup aria-label={`Actions for product ${row.id}`}>
+              <ActionButton
+                label="View Product Details"
+                icon={Eye}
+                className="!rounded-full border border-slate-200/80 bg-white text-slate-700 hover:bg-slate-100"
+                onClick={() => {
+                  notify(`Viewing product: ${row.productName} (Age: ${row.ageDays} Days)`);
+                }}
+              />
+              <ActionButton
+                label="Reallocate / Adjust Stock"
+                icon={SlidersHorizontal}
+                className="!rounded-full border border-slate-200/80 bg-white text-slate-700 hover:bg-slate-100"
+                onClick={() => {
+                  notify(`Reallocating batch ${row.batchNo}`);
+                }}
+              />
+              <ActionButton
+                label="View Location"
+                icon={MapPin}
+                className="!rounded-full border border-slate-200/80 bg-white text-slate-700 hover:bg-slate-100"
+                onClick={() => {
+                  notify(`Location: ${row.warehouse} > ${row.zone} > ${row.rack}`);
+                }}
+              />
+              <ActionButton
+                label="Download Item Report"
+                icon={Download}
+                className="!rounded-full border border-slate-200/80 bg-white text-slate-700 hover:bg-slate-100"
+                onClick={() => {
+                  notify(`Exporting aging record for ${row.productName}`);
+                }}
+              />
+            </ActionButtonGroup>
+          )}
+        />
       </div>
     </>
   );

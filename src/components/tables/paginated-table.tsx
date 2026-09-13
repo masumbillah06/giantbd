@@ -13,6 +13,10 @@ export interface PaginatedTableProps<T extends RowBase> {
   initialPage?: number;
   minWidth?: string;
   actionsLabel?: string;
+  showActions?: boolean;
+  showCheckbox?: boolean;
+  showId?: boolean;
+  idLabel?: string;
   emptyState?: React.ReactNode;
   renderActions?: (row: T, notify: (msg: string) => void) => React.ReactNode;
   selectedIds?: Array<T["id"]>;
@@ -34,6 +38,10 @@ export function PaginatedTable<T extends RowBase>({
   initialPage = 1,
   minWidth = "1200px",
   actionsLabel = "Action",
+  showActions,
+  showCheckbox,
+  showId,
+  idLabel,
   emptyState,
   renderActions,
   selectedIds: controlledSelectedIds,
@@ -91,6 +99,10 @@ export function PaginatedTable<T extends RowBase>({
           selectedIds={effectiveSelectedIds}
           onSelectionChange={handleSelectionChange}
           actionsLabel={actionsLabel}
+          showActions={showActions}
+          showCheckbox={showCheckbox}
+          showId={showId}
+          idLabel={idLabel}
           minWidth={minWidth}
           emptyState={emptyState}
           renderActions={renderActions ? (row) => renderActions(row, notify) : undefined}

@@ -3,6 +3,8 @@
 // Seeded directly from production batches & expanded with realistic records
 // ---------------------------------------------------------------------------
 
+import type { ColumnDef } from "@/components/tables/ReusableTable.types";
+
 export interface BatchItem {
   id: number;
   batchId: string;
@@ -14,6 +16,43 @@ export interface BatchItem {
   createdBy: string;
   productionDate: string;
 }
+
+export const batchColumns: ColumnDef<BatchItem>[] = [
+  {
+    key: "batchId",
+    label: "Batch ID",
+    cellClassName: "whitespace-nowrap px-5 py-2 text-sm text-slate-950 group-hover:text-white font-medium",
+  },
+  {
+    key: "stockInDate",
+    label: "Stock In Date",
+  },
+  {
+    key: "productName",
+    label: "Product Name",
+    cellClassName: "whitespace-nowrap px-5 py-2 text-sm text-slate-950 group-hover:text-white font-medium",
+  },
+  {
+    key: "material",
+    label: "Material",
+  },
+  {
+    key: "quantity",
+    label: "Quantity",
+  },
+  {
+    key: "pkgQty",
+    label: "Pkg Qty",
+  },
+  {
+    key: "createdBy",
+    label: "Created By",
+  },
+  {
+    key: "productionDate",
+    label: "Production Date",
+  },
+];
 
 /**
  * Exact batches matching the system reference, ordered by ID descending.
