@@ -2,7 +2,7 @@
 
 import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
 import NavCh from "@/components/ui/nav-child";
-import MonthlyDelivery from "@/components/delivery/monthly-delivery";
+import { PeriodicDelivery } from "@/components/delivery";
 
 export default function MonthlyDeliveryPage() {
   return (
@@ -24,9 +24,9 @@ export default function MonthlyDeliveryPage() {
         </div>
       </div>
 
-      {/* ── Monthly Delivery Components ── */}
+      {/* ── Monthly Delivery Component ── */}
       <div className="mt-4">
-        <MonthlyDelivery />
+        <PeriodicDelivery mode="monthly" />
       </div>
     </>
   );
