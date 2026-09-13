@@ -5,36 +5,15 @@ export interface StatBreakdownItem {
   label: string;
   value: string | number;
 }
-
 export interface StatCardProps {
-  /** Title / label at the top-left (e.g. "Daily In") */
   title: ReactNode;
-  /** Primary metric value (e.g. 0 or "1,250") */
   value: string | number;
-  /** Optional unit placed directly beside the value (e.g. "Pairs", "Kg", "Items") */
   unit?: string;
-  /**
-   * Breakdown details shown at the bottom.
-   * - Array: `[{ label: "Bat", value: 0 }, { label: "Mas", value: 0 }, { label: "Var", value: 0 }]`
-   * - String: `"0 Bat | 0 Mas | 0 Var"`
-   * - ReactNode: Custom JSX elements
-   */
   breakdown?: StatBreakdownItem[] | ReactNode;
-  /**
-   * Trend direction for the indicator icon in top-right.
-   * - 'up': Green arrow up (default)
-   * - 'down': Red arrow down
-   * - 'neutral': Gray horizontal dash
-   * - 'none': No trend icon
-   */
   trend?: "up" | "down" | "neutral" | "none";
-  /** Override with any custom icon or ReactNode at top-right */
   icon?: ReactNode;
-  /** Custom CSS class for trend icon color (e.g. "text-emerald-500", "text-blue-500") */
   trendColorClass?: string;
-  /** Custom CSS class for the main container */
   className?: string;
-  /** Optional click handler if the card is interactive */
   onClick?: () => void;
 }
 
@@ -124,7 +103,7 @@ export default function StatCard({
   return (
     <div
       onClick={onClick}
-      className={`relative flex flex-col justify-between rounded-3xl border border-slate-200/80 bg-white p-4 sm:p-4 shadow-sm transition-all hover:shadow-md ${
+      className={`relative flex flex-col justify-between rounded-3xl border border-slate-200 bg-white p-4 sm:p-4 shadow-xs transition-all hover:shadow-sm ${
         onClick ? "cursor-pointer" : ""
       } ${className}`}
     >

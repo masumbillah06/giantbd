@@ -64,14 +64,12 @@ export default function LoginPage() {
           `}
         >
           <div className="w-full max-w-sm px-8">
-
             {/* Logo */}
             <div className="mb-10 flex justify-center">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/giantbdLogo.webp"
+                src="/image.png"
                 alt="Giant BD Co Limited"
-                className="h-22 w-auto object-contain"
+                className="h-28 w-auto object-contain"
               />
             </div>
 

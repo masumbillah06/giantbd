@@ -29,7 +29,7 @@ type SidebarProps = {
 export function Sidebar({
   user,
   onLogout,
-  logoSrc = "/giantbdLogo.webp",
+  logoSrc = "/image.png",
   logoHref = "/inventory/dashboard",
   isCollapsed: propIsCollapsed,
 }: SidebarProps) {
@@ -61,7 +61,7 @@ export function Sidebar({
             className={
               isCollapsed
                 ? "h-9 w-auto max-w-[48px] object-contain"
-                : "h-16 pt-2 w-auto object-contain"
+                : "h-22 w-auto object-contain"
             }
           />
         </Link>

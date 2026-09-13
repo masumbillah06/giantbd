@@ -51,7 +51,7 @@ export function TableToolbar({
   return (
     <div
       className={cn(
-        "min-h-16 w-full flex flex-wrap items-center justify-between gap-3 px-4 py-2.5",
+        "min-h-16 w-full flex flex-wrap items-center justify-end gap-3 px-4 py-2.5",
         className
       )}
     >

@@ -19,7 +19,7 @@ export default function Breadcrumb({
 }: BreadcrumbProps) {
   return (
     <div
-      className={`flex min-h-20 w-full flex-col justify-center overflow-hidden rounded-xl bg-white shadow-xs ${className}`}
+      className={`flex min-h-20 w-full flex-col justify-center overflow-hidden rounded-xl bg-white ${className}`}
     >
       <div className="px-4">
         <h1 className="text-lg font-semibold">{title}</h1>
