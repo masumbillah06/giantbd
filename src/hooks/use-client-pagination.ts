@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
-import type { RowBase } from "@/components/tables/ReusableTable.types";
+import type { RowBase, RowId } from "@/components/tables/ReusableTable.types";
 
 export interface UseClientPaginationOptions<T extends RowBase> {
   data: T[];
@@ -10,9 +10,12 @@ export interface UseClientPaginationOptions<T extends RowBase> {
   noticeDuration?: number;
 }
 
-export interface UseClientPaginationReturn<T extends RowBase> {
-  selectedIds: Array<T["id"]>;
-  setSelectedIds: React.Dispatch<React.SetStateAction<Array<T["id"]>>>;
+export interface UseClientPaginationReturn<
+  T extends RowBase,
+  TId extends string | number = RowId<T>
+> {
+  selectedIds: Array<TId>;
+  setSelectedIds: React.Dispatch<React.SetStateAction<Array<TId>>>;
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   actionNotice: string | null;
@@ -28,13 +31,16 @@ export interface UseClientPaginationReturn<T extends RowBase> {
  * Common client-side pagination, row selection, and action notice hook.
  * Consolidates repeated table state logic across data tables.
  */
-export function useClientPagination<T extends RowBase>({
+export function useClientPagination<
+  T extends RowBase,
+  TId extends string | number = RowId<T>
+>({
   data,
   pageSize = 10,
   initialPage = 1,
   noticeDuration = 3500,
-}: UseClientPaginationOptions<T>): UseClientPaginationReturn<T> {
-  const [selectedIds, setSelectedIds] = useState<Array<T["id"]>>([]);
+}: UseClientPaginationOptions<T>): UseClientPaginationReturn<T, TId> {
+  const [selectedIds, setSelectedIds] = useState<Array<TId>>([]);
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [actionNotice, setActionNotice] = useState<string | null>(null);
 
@@ -102,4 +108,3 @@ export function useClientPagination<T extends RowBase>({
 }
 
 export default useClientPagination;
-
