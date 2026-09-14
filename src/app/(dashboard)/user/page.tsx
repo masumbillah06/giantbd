@@ -1,5 +1,5 @@
 "use client";
-import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb"
+import Breadcrumb from "@/components/ui/breadcrumb"
 import NavCh from "@/components/ui/nav-child"
 import { useState } from "react";
 import { Eye, PenSquareIcon, Trash2 } from "lucide-react";

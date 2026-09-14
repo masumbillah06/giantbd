@@ -1,7 +1,7 @@
 "use client";
 
 import { Bell, ChevronDown, CircleUserRound, Moon, TextAlignJustify } from "lucide-react";
-import SearchDropdown from "../ui/searchbar-drop/SearchDropdown";
+import SearchDropdown from "../ui/SearchDropdown";
 import { useSidebar } from "@/components/layout/sidebar-context";
 
 export default function Header() {

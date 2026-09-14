@@ -1,6 +1,6 @@
 "use client";
 
-import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
+import Breadcrumb from "@/components/ui/breadcrumb";
 import NavCh from "@/components/ui/nav-child";
 import { useMemo, useState } from "react";
 import Pagination from "@/components/ui/pagination";

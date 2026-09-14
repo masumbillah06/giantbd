@@ -1,6 +1,6 @@
 "use client";
 
-import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
+import Breadcrumb from "@/components/ui/breadcrumb";
 import NavCh from "@/components/ui/nav-child";
 import PaginatedTable from "@/components/tables/paginated-table";
 import { ActionButton } from "@/components/ui/buttons/action-button";

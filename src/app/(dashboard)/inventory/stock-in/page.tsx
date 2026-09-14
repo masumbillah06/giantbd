@@ -1,4 +1,4 @@
-import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
+import Breadcrumb from "@/components/ui/breadcrumb";
 import BasicInfo from "@/components/stock-in/basic-info";
 import Documents from "@/components/stock-in/documents";
 import Remarks from "@/components/stock-in/remarks";

@@ -1,4 +1,4 @@
-import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb"
+import Breadcrumb from "@/components/ui/breadcrumb"
 import StockOut from "@/components/stock-out/stock-out"
 
 export default function StockOutPage() {

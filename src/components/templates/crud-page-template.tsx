@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import DashboardShell from "@/components/layout/dashboard-shell";
-import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb";
+import Breadcrumb from "@/components/ui/breadcrumb";
 import TableToolbar from "@/components/ui/table-toolbar";
 import PaginatedTable from "@/components/tables/paginated-table";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";

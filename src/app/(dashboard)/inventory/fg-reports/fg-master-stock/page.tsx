@@ -1,4 +1,4 @@
-import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb"
+import Breadcrumb from "@/components/ui/breadcrumb"
 
 export default function FgMasterStockPage() {
   return (

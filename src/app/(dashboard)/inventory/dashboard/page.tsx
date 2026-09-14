@@ -1,10 +1,21 @@
-import InventoryTables from "@/components/dashboard/inventory-tables"
-import Breadcrumb from "@/components/ui/breadcrumbs/breadcrumb"
-import { ChartBarDefault } from "@/components/ui/dashboard/bar-chart"
-import { ChartPieDonut } from "@/components/ui/dashboard/donut-chart"
-import { ChartLineMultiple } from "@/components/ui/dashboard/line-chart"
-import { ChartPieSimple } from "@/components/ui/dashboard/pie-chart"
-import StatCard from "@/components/ui/dashboard/stat-card"
+"use client";
+
+import Breadcrumb from "@/components/ui/breadcrumb";
+import { ChartBarDefault } from "@/components/ui/dashboard/bar-chart";
+import { ChartPieDonut } from "@/components/ui/dashboard/donut-chart";
+import { ChartLineMultiple } from "@/components/ui/dashboard/line-chart";
+import { ChartPieSimple } from "@/components/ui/dashboard/pie-chart";
+import StatCard from "@/components/ui/dashboard/stat-card";
+import ReusableTable from "@/components/tables/ReusableTable";
+import {
+  stockInData,
+  stockInColumns,
+  requisitionData,
+  requisitionColumns,
+  renderRequisitionActions,
+  type StockInRow,
+  type RequisitionRow,
+} from "@/lib/product-data/dashboard-data";
 
 export default function Dashboard() {
   return (
@@ -47,9 +58,55 @@ export default function Dashboard() {
           <ChartPieSimple />
         </div>
       </div>
-      <div className="mt-4">
-        <InventoryTables />
+
+      {/* Tables Section */}
+      <div className="mt-4 bg-[var(--color-bg)]">
+        {/* Recent FG Stock In */}
+        <div className="rounded-xl bg-[var(--color-bg)] overflow-hidden">
+          <div className="flex items-center justify-between py-4">
+            <div className="bg-white h-7 w-auto px-3 flex items-center justify-center rounded-md shadow-sm">
+              <h2 className="text-sm font-bold text-slate-900">Recent FG Stock In</h2>
+            </div>
+            <button
+              type="button"
+              className="rounded-md bg-indigo-500 px-4 py-1.5 text-sm font-semibold text-white hover:bg-indigo-600 transition-colors cursor-pointer"
+            >
+              + New
+            </button>
+          </div>
+
+          <ReusableTable<StockInRow>
+            data={stockInData}
+            columns={stockInColumns}
+            showCheckbox={false}
+            showId={true}
+            idLabel="ID"
+            showActions={false}
+            minWidth="1100px"
+          />
+        </div>
+
+        {/* Requisition For Shipment */}
+        <div className="rounded-xl bg-[var(--color-bg)] overflow-hidden mt-4">
+          <div className="flex items-center justify-between py-4">
+            <div className="bg-white h-7 w-auto px-3 flex items-center justify-center rounded-md shadow-sm">
+              <h2 className="text-sm font-bold text-slate-900">Requsition For Shipment</h2>
+            </div>
+          </div>
+
+          <ReusableTable<RequisitionRow>
+            data={requisitionData}
+            columns={requisitionColumns}
+            showCheckbox={false}
+            showId={true}
+            idLabel="ID"
+            showActions={true}
+            actionsLabel="Action"
+            renderActions={renderRequisitionActions}
+            minWidth="1200px"
+          />
+        </div>
       </div>
     </>
-  )
+  );
 }
