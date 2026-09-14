@@ -1,21 +1,84 @@
 "use client";
 
-import React from "react";
-import { CrudPageTemplate } from "@/components/templates/crud-page-template";
-import { subCategoryData, columns, type SubCategoryRecord } from "@/lib/attribute-data/sub-category-data";
+import React, { useState, useMemo } from "react";
+import Breadcrumb from "@/components/ui/breadcrumb";
+import NavCh from "@/components/ui/nav-child";
+import PaginatedTable from "@/components/tables/paginated-table";
+import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
+import { ActionButton } from "@/components/ui/buttons/action-button";
+import { Eye, PenSquareIcon, Trash2 } from "lucide-react";
+import {
+  subCategoryData,
+  columns,
+  type SubCategoryRecord,
+} from "@/lib/attribute-data/sub-category-data";
 
 export default function SubCategoryPage() {
+  const [searchValue, setSearchValue] = useState("");
+  const [pageSize, setPageSize] = useState(10);
+
+  const filteredData = useMemo(() => {
+    if (!searchValue.trim()) return subCategoryData;
+    const query = searchValue.toLowerCase();
+    return subCategoryData.filter((row) =>
+      Object.values(row).some((val) =>
+        String(val ?? "").toLowerCase().includes(query)
+      )
+    );
+  }, [searchValue]);
+
   return (
-    <CrudPageTemplate<SubCategoryRecord>
-      title="Sub Category"
-      breadcrumbLabel="Sub Category"
-      data={subCategoryData}
-      columns={columns}
-      minWidth="1000px"
-      onNew={() => console.log("Create new sub category")}
-      onEdit={(row) => console.log("Edit sub category", row.id)}
-      onDelete={(row) => console.log("Delete sub category", row.id)}
-      onView={(row) => console.log("View sub category", row.id)}
-    />
+    <>
+      <div className="min-h-20 w-full flex justify-between items-center bg-white shadow-sm rounded-xl">
+        <div>
+          <Breadcrumb
+            title="Sub Category"
+            items={[
+              { label: "Attribute", href: "/attribute/category" },
+              { label: "Sub Category", href: "/attribute/sub-category" },
+            ]}
+          />
+        </div>
+        <div>
+          <NavCh
+            searchValue={searchValue}
+            onSearchChange={setSearchValue}
+            pageSize={pageSize}
+            onPageSizeChange={setPageSize}
+            onNew={() => console.log("Create new sub category")}
+            newButtonLabel="New Sub Category"
+          />
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <PaginatedTable<SubCategoryRecord>
+          data={filteredData}
+          columns={columns}
+          pageSize={pageSize}
+          minWidth="1000px"
+          actionsLabel="Action"
+          renderActions={(row) => (
+            <ActionButtonGroup aria-label={`Actions for sub category ${row.id}`}>
+              <ActionButton
+                label="View Sub Category"
+                icon={Eye}
+                onClick={() => console.log("View sub category", row.id)}
+              />
+              <ActionButton
+                label="Edit Sub Category"
+                icon={PenSquareIcon}
+                onClick={() => console.log("Edit sub category", row.id)}
+              />
+              <ActionButton
+                label="Delete Sub Category"
+                icon={Trash2}
+                onClick={() => console.log("Delete sub category", row.id)}
+              />
+            </ActionButtonGroup>
+          )}
+        />
+      </div>
+    </>
   );
 }

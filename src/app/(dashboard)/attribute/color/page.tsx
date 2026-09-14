@@ -1,21 +1,84 @@
 "use client";
 
-import React from "react";
-import { CrudPageTemplate } from "@/components/templates/crud-page-template";
-import { colorData, columns, type ColorRecord } from "@/lib/attribute-data/color-data";
+import React, { useState, useMemo } from "react";
+import Breadcrumb from "@/components/ui/breadcrumb";
+import NavCh from "@/components/ui/nav-child";
+import PaginatedTable from "@/components/tables/paginated-table";
+import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
+import { ActionButton } from "@/components/ui/buttons/action-button";
+import { Eye, PenSquareIcon, Trash2 } from "lucide-react";
+import {
+  colorData,
+  columns,
+  type ColorRecord,
+} from "@/lib/attribute-data/color-data";
 
 export default function ColorPage() {
+  const [searchValue, setSearchValue] = useState("");
+  const [pageSize, setPageSize] = useState(10);
+
+  const filteredData = useMemo(() => {
+    if (!searchValue.trim()) return colorData;
+    const query = searchValue.toLowerCase();
+    return colorData.filter((row) =>
+      Object.values(row).some((val) =>
+        String(val ?? "").toLowerCase().includes(query)
+      )
+    );
+  }, [searchValue]);
+
   return (
-    <CrudPageTemplate<ColorRecord>
-      title="Color"
-      breadcrumbLabel="Color"
-      data={colorData}
-      columns={columns}
-      minWidth="800px"
-      onNew={() => console.log("Create new color")}
-      onEdit={(row) => console.log("Edit color", row.id)}
-      onDelete={(row) => console.log("Delete color", row.id)}
-      onView={(row) => console.log("View color", row.id)}
-    />
+    <>
+      <div className="min-h-20 w-full flex justify-between items-center bg-white shadow-sm rounded-xl">
+        <div>
+          <Breadcrumb
+            title="Color"
+            items={[
+              { label: "Attribute", href: "/attribute/category" },
+              { label: "Color", href: "/attribute/color" },
+            ]}
+          />
+        </div>
+        <div>
+          <NavCh
+            searchValue={searchValue}
+            onSearchChange={setSearchValue}
+            pageSize={pageSize}
+            onPageSizeChange={setPageSize}
+            onNew={() => console.log("Create new color")}
+            newButtonLabel="New Color"
+          />
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <PaginatedTable<ColorRecord>
+          data={filteredData}
+          columns={columns}
+          pageSize={pageSize}
+          minWidth="800px"
+          actionsLabel="Action"
+          renderActions={(row) => (
+            <ActionButtonGroup aria-label={`Actions for color ${row.id}`}>
+              <ActionButton
+                label="View Color"
+                icon={Eye}
+                onClick={() => console.log("View color", row.id)}
+              />
+              <ActionButton
+                label="Edit Color"
+                icon={PenSquareIcon}
+                onClick={() => console.log("Edit color", row.id)}
+              />
+              <ActionButton
+                label="Delete Color"
+                icon={Trash2}
+                onClick={() => console.log("Delete color", row.id)}
+              />
+            </ActionButtonGroup>
+          )}
+        />
+      </div>
+    </>
   );
 }

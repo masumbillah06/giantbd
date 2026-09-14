@@ -1,21 +1,84 @@
 "use client";
 
-import React from "react";
-import { CrudPageTemplate } from "@/components/templates/crud-page-template";
-import { subZoneData, columns, type SubZoneRecord } from "@/lib/attribute-data/sub-zone-data";
+import React, { useState, useMemo } from "react";
+import Breadcrumb from "@/components/ui/breadcrumb";
+import NavCh from "@/components/ui/nav-child";
+import PaginatedTable from "@/components/tables/paginated-table";
+import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
+import { ActionButton } from "@/components/ui/buttons/action-button";
+import { Eye, PenSquareIcon, Trash2 } from "lucide-react";
+import {
+  subZoneData,
+  columns,
+  type SubZoneRecord,
+} from "@/lib/attribute-data/sub-zone-data";
 
 export default function SubZonePage() {
+  const [searchValue, setSearchValue] = useState("");
+  const [pageSize, setPageSize] = useState(10);
+
+  const filteredData = useMemo(() => {
+    if (!searchValue.trim()) return subZoneData;
+    const query = searchValue.toLowerCase();
+    return subZoneData.filter((row) =>
+      Object.values(row).some((val) =>
+        String(val ?? "").toLowerCase().includes(query)
+      )
+    );
+  }, [searchValue]);
+
   return (
-    <CrudPageTemplate<SubZoneRecord>
-      title="Sub Zone"
-      breadcrumbLabel="Sub Zone"
-      data={subZoneData}
-      columns={columns}
-      minWidth="1000px"
-      onNew={() => console.log("Create new sub zone")}
-      onEdit={(row) => console.log("Edit sub zone", row.id)}
-      onDelete={(row) => console.log("Delete sub zone", row.id)}
-      onView={(row) => console.log("View sub zone", row.id)}
-    />
+    <>
+      <div className="min-h-20 w-full flex justify-between items-center bg-white shadow-sm rounded-xl">
+        <div>
+          <Breadcrumb
+            title="Sub Zone"
+            items={[
+              { label: "Attribute", href: "/attribute/category" },
+              { label: "Sub Zone", href: "/attribute/sub-zone" },
+            ]}
+          />
+        </div>
+        <div>
+          <NavCh
+            searchValue={searchValue}
+            onSearchChange={setSearchValue}
+            pageSize={pageSize}
+            onPageSizeChange={setPageSize}
+            onNew={() => console.log("Create new sub zone")}
+            newButtonLabel="New Sub Zone"
+          />
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <PaginatedTable<SubZoneRecord>
+          data={filteredData}
+          columns={columns}
+          pageSize={pageSize}
+          minWidth="1000px"
+          actionsLabel="Action"
+          renderActions={(row) => (
+            <ActionButtonGroup aria-label={`Actions for sub zone ${row.id}`}>
+              <ActionButton
+                label="View Sub Zone"
+                icon={Eye}
+                onClick={() => console.log("View sub zone", row.id)}
+              />
+              <ActionButton
+                label="Edit Sub Zone"
+                icon={PenSquareIcon}
+                onClick={() => console.log("Edit sub zone", row.id)}
+              />
+              <ActionButton
+                label="Delete Sub Zone"
+                icon={Trash2}
+                onClick={() => console.log("Delete sub zone", row.id)}
+              />
+            </ActionButtonGroup>
+          )}
+        />
+      </div>
+    </>
   );
 }
