@@ -3,7 +3,7 @@
 import React from "react";
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
-import { Sidebar, type SidebarUser } from "@/components/sidebar/sidebar";
+import { Sidebar, type SidebarUser } from "@/components/layout/sidebar";
 import { cn } from "@/lib/utils";
 
 export const DEFAULT_SIDEBAR_USER: SidebarUser = {
