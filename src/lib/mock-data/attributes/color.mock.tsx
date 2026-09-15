@@ -1,5 +1,6 @@
 import React from 'react';
 import type { ColorRecord } from '@/features/attributes/types/attribute.types';
+export type { ColorRecord };
 import type { ColumnDef } from '@/components/ui/tables/ReusableTable.types';
 
 export const colorData: ColorRecord[] = [

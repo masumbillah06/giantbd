@@ -1,4 +1,5 @@
 import type { ZoneRecord } from '@/features/attributes/types/attribute.types';
+export type { ZoneRecord };
 import type { ColumnDef } from '@/components/ui/tables/ReusableTable.types';
 
 export const zoneData: ZoneRecord[] = [

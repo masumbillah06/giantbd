@@ -11,7 +11,7 @@ import {
   stockAgingData,
   stockAgingColumns,
   type StockAgingItem,
-} from "@/lib/product-data/stock-aging-data";
+} from "@/lib/mock-data/reports/stock-aging.mock";
 
 export default function StockAgingOverviewPage() {
   return (

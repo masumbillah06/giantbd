@@ -11,7 +11,7 @@ import {
   subCategoryData,
   columns,
   type SubCategoryRecord,
-} from "@/lib/attribute-data/sub-category-data";
+} from "@/lib/mock-data/attributes/sub-category.mock";
 
 export default function SubCategoryPage() {
   const [searchValue, setSearchValue] = useState("");

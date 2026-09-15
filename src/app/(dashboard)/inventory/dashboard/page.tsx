@@ -13,9 +13,8 @@ import {
   requisitionData,
   requisitionColumns,
   renderRequisitionActions,
-  type StockInRow,
-  type RequisitionRow,
-} from "@/lib/product-data/dashboard-data";
+} from "@/lib/mock-data/dashboard/dashboard.mock";
+import type { StockInRow, RequisitionRow } from "@/features/dashboard/types/dashboard.types";
 
 export default function Dashboard() {
   return (

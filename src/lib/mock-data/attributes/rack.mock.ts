@@ -1,4 +1,5 @@
 import type { RackRecord } from '@/features/attributes/types/attribute.types';
+export type { RackRecord };
 import type { ColumnDef } from '@/components/ui/tables/ReusableTable.types';
 
 export const rackData: RackRecord[] = [

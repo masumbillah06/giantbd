@@ -11,7 +11,7 @@ import {
   materialData,
   columns,
   type MaterialRecord,
-} from "@/lib/attribute-data/material-data";
+} from "@/lib/mock-data/attributes/material.mock";
 
 export default function MaterialPage() {
   const [searchValue, setSearchValue] = useState("");

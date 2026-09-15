@@ -11,7 +11,7 @@ import {
   categoryData,
   columns,
   type CategoryRecord,
-} from "@/lib/attribute-data/category-data";
+} from "@/lib/mock-data/attributes/category.mock";
 
 export default function CategoryPage() {
   const [searchValue, setSearchValue] = useState("");

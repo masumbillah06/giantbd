@@ -14,14 +14,14 @@ import {
   MONTHLY_FILTER_OPTIONS,
   type MonthInfo,
   type MonthlyDeliveryItem,
-} from "@/lib/product-data/monthly-delivery-data";
+} from "@/lib/mock-data/reports/monthly-delivery.mock";
 import {
   WEEKS_LIST,
   DELIVERY_ITEMS,
   FILTER_OPTIONS,
   type WeekInfo,
   type DeliveryItem,
-} from "@/lib/product-data/weekly-delivery-data";
+} from "@/lib/mock-data/reports/weekly-delivery.mock";
 import { cn } from "@/lib/utils";
 
 export type DeliveryMode = DeliveryPeriodMode;

@@ -11,7 +11,7 @@ import {
   zoneData,
   columns,
   type ZoneRecord,
-} from "@/lib/attribute-data/zone-data";
+} from "@/lib/mock-data/attributes/zone.mock";
 
 export default function ZonePage() {
   const [searchValue, setSearchValue] = useState("");

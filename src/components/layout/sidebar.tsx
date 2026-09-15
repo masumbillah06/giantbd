@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LogOut } from "lucide-react";
-import { sidebarNav } from "@/lib/sidebar-nav-data";
+import { sidebarNav } from "@/lib/constants/sidebar-nav-data";
 import { SidebarNavItem } from "./sidebar-nav-item";
 import { useSidebar } from "./sidebar-context";
 

@@ -11,7 +11,7 @@ import {
   subZoneData,
   columns,
   type SubZoneRecord,
-} from "@/lib/attribute-data/sub-zone-data";
+} from "@/lib/mock-data/attributes/sub-zone.mock";
 
 export default function SubZonePage() {
   const [searchValue, setSearchValue] = useState("");

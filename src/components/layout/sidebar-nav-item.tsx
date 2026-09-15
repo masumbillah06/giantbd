@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ChevronRight, ChevronDown } from "lucide-react";
-import type { NavItem } from "@/lib/sidebar-nav-data";
+import type { NavItem } from "@/lib/constants/sidebar-nav-data";
 import { useSidebar } from "./sidebar-context";
 
 function cx(...classes: Array<string | false | undefined>) {

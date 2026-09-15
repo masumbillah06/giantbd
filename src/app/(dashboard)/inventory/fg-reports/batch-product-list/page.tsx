@@ -11,7 +11,7 @@ import {
   batchProductData,
   batchProductColumns,
   type BatchProductItem,
-} from "@/lib/product-data/batch-product-data";
+} from "@/lib/mock-data/reports/batch-product.mock";
 
 export default function BatchProductListPage() {
   return (

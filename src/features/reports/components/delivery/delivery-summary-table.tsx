@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import type { YearSummaryData } from "@/lib/product-data/delivery-summary-data";
+import type { YearSummaryData } from "@/lib/mock-data/reports/delivery-summary.mock";
 
 export interface DeliverySummaryTableProps {
   summaryData: YearSummaryData;

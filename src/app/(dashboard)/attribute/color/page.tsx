@@ -11,7 +11,7 @@ import {
   colorData,
   columns,
   type ColorRecord,
-} from "@/lib/attribute-data/color-data";
+} from "@/lib/mock-data/attributes/color.mock";
 
 export default function ColorPage() {
   const [searchValue, setSearchValue] = useState("");

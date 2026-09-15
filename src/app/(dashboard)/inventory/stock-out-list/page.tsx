@@ -7,13 +7,13 @@ import PaginatedTable from "@/components/ui/tables/paginated-table";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
 import { Eye, FileText, Truck, Package } from "lucide-react";
-import {
-  stockOutData,
-  stockOutColumns,
-  type StockOutItem,
-} from "@/lib/product-data/stockout-list";
+import { stockOutColumns } from "@/lib/mock-data/inventory/stockout-list.mock";
+import { useStockOutList } from "@/features/inventory/hooks/use-stock-out-list";
+import type { StockOutItem } from "@/features/inventory/types/inventory.types";
 
 export default function StockOutListPage() {
+  const { data = [], isLoading, error, refetch } = useStockOutList();
+
   return (
     <>
       {/* ── Breadcrumb Bar with Table Actions ── */}
@@ -28,7 +28,7 @@ export default function StockOutListPage() {
           />
         </div>
         <div>
-          <TableToolbar />
+          <TableToolbar onReload={() => refetch()} isLoading={isLoading} />
         </div>
       </div>
 
@@ -40,55 +40,61 @@ export default function StockOutListPage() {
       {/* ── Stock Out Table with Pagination ── */}
       <div className="mt-4">
         <PaginatedTable<StockOutItem>
-          data={stockOutData}
+          data={data}
           columns={stockOutColumns}
           pageSize={17}
           minWidth="1200px"
           actionsLabel="Action"
+          isLoading={isLoading}
+          error={error ? error.message : null}
+          onRetry={() => refetch()}
           renderActions={(row, notify) => (
             <ActionButtonGroup aria-label={`Actions for record ${row.id}`}>
               {/* Always show View */}
               <ActionButton
-                label="View Stock Out"
+                label="View Stock Out Details"
                 icon={Eye}
-                className="!rounded-full border border-slate-200/80 bg-white hover:bg-slate-100 text-slate-700"
                 onClick={() => {
-                  notify(`Viewing stock out record #${row.id} (${row.lcNo})`);
+                  notify(`Viewing details for LC: ${row.lcNo}`);
                 }}
               />
 
-              {/* Show Document for Issued and Received */}
-              {(row.status === "Issued" || row.status === "Received") && (
-                <ActionButton
-                  label={row.status === "Issued" ? "Delivery Note / Gate Pass" : "Receipt Document"}
-                  icon={FileText}
-                  className="!rounded-full border border-slate-200/80 bg-white hover:bg-slate-100 text-slate-700"
-                  onClick={() => {
-                    notify(`Opening document for #${row.id}`);
-                  }}
-                />
-              )}
-
-              {/* Show Truck / Dispatch for Issued and Received */}
-              {(row.status === "Issued" || row.status === "Received") && (
-                <ActionButton
-                  label="Dispatch / Shipment Details"
-                  icon={Truck}
-                  className="!rounded-full border border-slate-200/80 bg-white hover:bg-slate-100 text-slate-700"
-                  onClick={() => {
-                    notify(`Viewing shipment details for #${row.id}`);
-                  }}
-                />
-              )}
-
-              {/* Show Package for Issued */}
+              {/* Status-specific actions */}
               {row.status === "Issued" && (
+                <>
+                  <ActionButton
+                    label="View Delivery Note"
+                    icon={FileText}
+                    onClick={() => {
+                      notify(`Delivery note for PO: ${row.poNo}`);
+                    }}
+                  />
+                  <ActionButton
+                    label="Track Dispatch"
+                    icon={Truck}
+                    onClick={() => {
+                      notify(`Tracking dispatch for LC: ${row.lcNo}`);
+                    }}
+                  />
+                </>
+              )}
+
+              {row.status === "Pending" && (
                 <ActionButton
-                  label="Package Details"
+                  label="Prepare Package"
                   icon={Package}
-                  className="!rounded-full border border-slate-200/80 bg-white hover:bg-slate-100 text-slate-700"
                   onClick={() => {
-                    notify(`Viewing package breakdown for #${row.id}`);
+                    notify(`Preparing package for PO: ${row.poNo}`);
+                  }}
+                />
+              )}
+
+              {row.status === "Received" && (
+                <ActionButton
+                  label="View Receipt"
+                  icon={FileText}
+                  onClick={() => {
+                    notify(`Receipt confirmed for LC: ${row.lcNo}`);
                   }}
                 />
               )}

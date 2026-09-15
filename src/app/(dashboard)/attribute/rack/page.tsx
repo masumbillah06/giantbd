@@ -11,7 +11,7 @@ import {
   rackData,
   columns,
   type RackRecord,
-} from "@/lib/attribute-data/rack-data";
+} from "@/lib/mock-data/attributes/rack.mock";
 
 export default function RackPage() {
   const [searchValue, setSearchValue] = useState("");

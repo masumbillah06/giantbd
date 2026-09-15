@@ -2,7 +2,7 @@
 
 import React from "react";
 import { ChevronsUpDown } from "lucide-react";
-import { AVAILABLE_YEARS } from "@/lib/product-data/delivery-summary-data";
+import { AVAILABLE_YEARS } from "@/lib/mock-data/reports/delivery-summary.mock";
 
 export interface DeliverySummaryHeaderProps {
   selectedYear: number;

@@ -11,7 +11,7 @@ import {
   warehouseData,
   columns,
   type WarehouseRecord,
-} from "@/lib/attribute-data/warehouse-data";
+} from "@/lib/mock-data/attributes/warehouse.mock";
 
 export default function WarehousePage() {
   const [searchValue, setSearchValue] = useState("");

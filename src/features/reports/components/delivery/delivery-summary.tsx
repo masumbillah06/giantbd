@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import DeliverySummaryHeader from "./delivery-summary-header";
 import DeliverySummaryTable from "./delivery-summary-table";
-import { getDeliverySummaryForYear } from "@/lib/product-data/delivery-summary-data";
+import { getDeliverySummaryForYear } from "@/lib/mock-data/reports/delivery-summary.mock";
 
 export interface DeliverySummaryProps {
   initialYear?: number;
