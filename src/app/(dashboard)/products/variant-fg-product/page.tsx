@@ -1,14 +1,14 @@
 "use client";
 
 import Breadcrumb from "@/components/ui/breadcrumb";
-import NavCh from "@/components/ui/nav-child";
+import TableToolbar from "@/components/ui/table-toolbar";
 import { useMemo, useState } from "react";
-import Pagination from "@/components/ui/pagination";
+import Pagination from "@/components/ui/tables/pagination";
 import { Eye, PenSquareIcon, Trash2 } from "lucide-react";
-import ReusableTable from "@/components/tables/ReusableTable";
+import ReusableTable from "@/components/ui/tables/ReusableTable";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
-import type { ColumnDef } from "@/components/tables/ReusableTable.types";
+import type { ColumnDef } from "@/components/ui/tables/ReusableTable.types";
 import FilterCard from "@/components/ui/filter-card";
 import {
   variantProducts,
@@ -79,7 +79,7 @@ export default function VariantFGProductPage() {
           />
         </div>
         <div>
-          <NavCh />
+          <TableToolbar />
         </div>
       </div>
 

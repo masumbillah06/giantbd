@@ -1,5 +1,5 @@
 import React from "react";
-import type { ColumnDef } from "@/components/tables/ReusableTable.types";
+import type { ColumnDef } from "@/components/ui/tables/ReusableTable.types";
 
 export interface MaterialRecord {
   id: number;

@@ -1,12 +1,12 @@
 "use client";
 
 import Breadcrumb from "@/components/ui/breadcrumb";
-import { ChartBarDefault } from "@/components/ui/dashboard/bar-chart";
-import { ChartPieDonut } from "@/components/ui/dashboard/donut-chart";
-import { ChartLineMultiple } from "@/components/ui/dashboard/line-chart";
-import { ChartPieSimple } from "@/components/ui/dashboard/pie-chart";
-import StatCard from "@/components/ui/dashboard/stat-card";
-import ReusableTable from "@/components/tables/ReusableTable";
+import { ChartBarDefault } from "@/components/dashboard/bar-chart";
+import { ChartPieDonut } from "@/components/dashboard/donut-chart";
+import { ChartLineMultiple } from "@/components/dashboard/line-chart";
+import { ChartPieSimple } from "@/components/dashboard/pie-chart";
+import StatCard from "@/components/dashboard/stat-card";
+import ReusableTable from "@/components/ui/tables/ReusableTable";
 import {
   stockInData,
   stockInColumns,

@@ -1,9 +1,9 @@
 "use client";
 
 import Breadcrumb from "@/components/ui/breadcrumb";
-import NavCh from "@/components/ui/nav-child";
+import TableToolbar from "@/components/ui/table-toolbar";
 import FilterCard from "@/components/ui/filter-card";
-import PaginatedTable from "@/components/tables/paginated-table";
+import PaginatedTable from "@/components/ui/tables/paginated-table";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
 import { Eye, SlidersHorizontal, MapPin, Gauge, Download } from "lucide-react";
@@ -12,7 +12,7 @@ import { batchData, batchColumns, type BatchItem } from "@/lib/product-data/batc
 export default function BatchListPage() {
   return (
     <>
-      {/* ── Breadcrumb Bar with NavChild Actions ── */}
+      {/* ── Breadcrumb Bar with Table Actions ── */}
       <div className="min-h-20 w-full flex justify-between items-center bg-white shadow-sm rounded-xl">
         <div>
           <Breadcrumb
@@ -24,7 +24,7 @@ export default function BatchListPage() {
           />
         </div>
         <div>
-          <NavCh />
+          <TableToolbar />
         </div>
       </div>
 

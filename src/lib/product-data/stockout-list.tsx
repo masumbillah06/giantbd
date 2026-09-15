@@ -4,7 +4,7 @@
 // ---------------------------------------------------------------------------
 
 import { Check } from "lucide-react";
-import type { ColumnDef } from "@/components/tables/ReusableTable.types";
+import type { ColumnDef } from "@/components/ui/tables/ReusableTable.types";
 
 export type StockOutStatus = "Issued" | "Pending" | "Received";
 export type StockOutLabel = "issued" | "pending" | "received";

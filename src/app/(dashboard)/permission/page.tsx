@@ -1,8 +1,8 @@
 "use client";
 
 import Breadcrumb from "@/components/ui/breadcrumb";
-import NavCh from "@/components/ui/nav-child";
-import PaginatedTable from "@/components/tables/paginated-table";
+import TableToolbar from "@/components/ui/table-toolbar";
+import PaginatedTable from "@/components/ui/tables/paginated-table";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
 import { PenSquareIcon, Trash2 } from "lucide-react";
@@ -15,7 +15,7 @@ import {
 export default function PermissionPage() {
   return (
     <>
-      {/* ── Breadcrumb Bar with NavChild Toolbar ── */}
+      {/* ── Breadcrumb Bar with Table Toolbar ── */}
       <div className="min-h-20 w-full flex justify-between items-center bg-white shadow-sm rounded-xl">
         <div>
           <Breadcrumb
@@ -26,7 +26,7 @@ export default function PermissionPage() {
           />
         </div>
         <div>
-          <NavCh />
+          <TableToolbar />
         </div>
       </div>
 

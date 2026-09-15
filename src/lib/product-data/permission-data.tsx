@@ -3,7 +3,7 @@
 // Seeded directly from reference Page 1 & expanded to 4 pages (40 records)
 // ---------------------------------------------------------------------------
 
-import type { ColumnDef } from "@/components/tables/ReusableTable.types";
+import type { ColumnDef } from "@/components/ui/tables/ReusableTable.types";
 
 export interface PermissionRecord {
   id: number;

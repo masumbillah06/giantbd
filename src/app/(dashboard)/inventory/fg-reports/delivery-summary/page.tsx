@@ -1,13 +1,13 @@
 "use client";
 
 import Breadcrumb from "@/components/ui/breadcrumb";
-import NavCh from "@/components/ui/nav-child";
+import TableToolbar from "@/components/ui/table-toolbar";
 import DeliverySummary from "@/components/delivery/delivery-summary";
 
 export default function DeliverySummaryPage() {
   return (
     <>
-      {/* ── Breadcrumb Bar with NavChild Actions ── */}
+      {/* ── Breadcrumb Bar with Table Actions ── */}
       <div className="min-h-20 w-full flex justify-between items-center bg-white shadow-sm rounded-xl">
         <div>
           <Breadcrumb
@@ -20,7 +20,7 @@ export default function DeliverySummaryPage() {
           />
         </div>
         <div>
-          <NavCh />
+          <TableToolbar />
         </div>
       </div>
 

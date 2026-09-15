@@ -3,7 +3,7 @@
 // Seeded directly from production batches & expanded with realistic records
 // ---------------------------------------------------------------------------
 
-import type { ColumnDef } from "@/components/tables/ReusableTable.types";
+import type { ColumnDef } from "@/components/ui/tables/ReusableTable.types";
 
 export interface BatchItem {
   id: number;

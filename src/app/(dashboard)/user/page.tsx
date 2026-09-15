@@ -1,12 +1,12 @@
 "use client";
 import Breadcrumb from "@/components/ui/breadcrumb"
-import NavCh from "@/components/ui/nav-child"
+import TableToolbar from "@/components/ui/table-toolbar";
 import { useState } from "react";
 import { Eye, PenSquareIcon, Trash2 } from "lucide-react";
-import ReusableTable from "@/components/tables/ReusableTable";
+import ReusableTable from "@/components/ui/tables/ReusableTable";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
-import type { ColumnDef } from "@/components/tables/ReusableTable.types";
+import type { ColumnDef } from "@/components/ui/tables/ReusableTable.types";
 
 interface UserRecord {
   id: number;
@@ -106,7 +106,7 @@ export default function UserPage() {
           />
         </div>
         <div>
-          <NavCh />
+          <TableToolbar />
         </div>
       </div>
       <div className="mt-4">

@@ -2,8 +2,8 @@
 
 import React, { useState, useMemo } from "react";
 import Breadcrumb from "@/components/ui/breadcrumb";
-import NavCh from "@/components/ui/nav-child";
-import PaginatedTable from "@/components/tables/paginated-table";
+import TableToolbar from "@/components/ui/table-toolbar";
+import PaginatedTable from "@/components/ui/tables/paginated-table";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { Eye, PenSquareIcon, Trash2 } from "lucide-react";
@@ -40,7 +40,7 @@ export default function CategoryPage() {
           />
         </div>
         <div>
-          <NavCh
+          <TableToolbar
             searchValue={searchValue}
             onSearchChange={setSearchValue}
             pageSize={pageSize}
