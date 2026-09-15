@@ -1,5 +1,5 @@
 import Breadcrumb from "@/components/ui/breadcrumb"
-import StockOut from "@/components/stock-out/stock-out"
+import StockOut from "@/features/inventory/components/stock-out/stock-out";
 
 export default function StockOutPage() {
   return (

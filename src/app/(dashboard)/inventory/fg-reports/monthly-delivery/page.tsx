@@ -2,7 +2,7 @@
 
 import Breadcrumb from "@/components/ui/breadcrumb";
 import TableToolbar from "@/components/ui/table-toolbar";
-import { PeriodicDelivery } from "@/components/delivery";
+import { PeriodicDelivery } from "@/features/reports/components/delivery";
 
 export default function MonthlyDeliveryPage() {
   return (

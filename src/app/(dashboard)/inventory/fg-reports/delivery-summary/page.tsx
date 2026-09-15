@@ -2,7 +2,7 @@
 
 import Breadcrumb from "@/components/ui/breadcrumb";
 import TableToolbar from "@/components/ui/table-toolbar";
-import DeliverySummary from "@/components/delivery/delivery-summary";
+import DeliverySummary from "@/features/reports/components/delivery/delivery-summary";
 
 export default function DeliverySummaryPage() {
   return (
