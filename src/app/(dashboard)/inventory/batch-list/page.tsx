@@ -7,9 +7,13 @@ import PaginatedTable from "@/components/ui/tables/paginated-table";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
 import { Eye, SlidersHorizontal, MapPin, Gauge, Download } from "lucide-react";
-import { batchData, batchColumns, type BatchItem } from "@/lib/product-data/batch-data";
+import { useBatchList } from "@/features/inventory/hooks/use-batch-list";
+import { batchColumns } from "@/lib/mock-data/inventory/batch.mock";
+import type { BatchItem } from "@/features/inventory/types/inventory.types";
 
 export default function BatchListPage() {
+  const { data = [], isLoading, error, refetch } = useBatchList();
+
   return (
     <>
       {/* ── Breadcrumb Bar with Table Actions ── */}
@@ -24,7 +28,7 @@ export default function BatchListPage() {
           />
         </div>
         <div>
-          <TableToolbar />
+          <TableToolbar onReload={() => refetch()} isLoading={isLoading} />
         </div>
       </div>
 
@@ -36,11 +40,14 @@ export default function BatchListPage() {
       {/* ── Batch Table with Pagination ── */}
       <div className="mt-4">
         <PaginatedTable<BatchItem>
-          data={batchData}
+          data={data}
           columns={batchColumns}
           pageSize={14}
           minWidth="1200px"
           actionsLabel="Action"
+          isLoading={isLoading}
+          error={error ? error.message : null}
+          onRetry={() => refetch()}
           renderActions={(row, notify) => (
             <ActionButtonGroup aria-label={`Actions for batch ${row.batchId}`}>
               <ActionButton

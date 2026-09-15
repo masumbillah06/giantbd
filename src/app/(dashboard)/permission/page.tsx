@@ -2,15 +2,7 @@
 
 import Breadcrumb from "@/components/ui/breadcrumb";
 import TableToolbar from "@/components/ui/table-toolbar";
-import PaginatedTable from "@/components/ui/tables/paginated-table";
-import { ActionButton } from "@/components/ui/buttons/action-button";
-import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
-import { PenSquareIcon, Trash2 } from "lucide-react";
-import {
-  PERMISSION_DATA,
-  permissionColumns,
-  type PermissionRecord,
-} from "@/lib/product-data/permission-data";
+import { PermissionTable } from "@/features/iam/components/permission-table";
 
 export default function PermissionPage() {
   return (
@@ -20,9 +12,7 @@ export default function PermissionPage() {
         <div>
           <Breadcrumb
             title="Permission"
-            items={[
-              { label: "Permission", href: "/permission" },
-            ]}
+            items={[{ label: "Permission", href: "/permission" }]}
           />
         </div>
         <div>
@@ -32,33 +22,7 @@ export default function PermissionPage() {
 
       {/* ── Permission Matrix Table ── */}
       <div className="mt-4">
-        <PaginatedTable<PermissionRecord>
-          data={PERMISSION_DATA}
-          columns={permissionColumns}
-          pageSize={10}
-          minWidth="1650px"
-          actionsLabel="Actions"
-          noticeDuration={3000}
-          renderActions={(row, notify) => (
-            <ActionButtonGroup aria-label={`Actions for module ${row.moduleName}`}>
-              <ActionButton
-                label="Edit Permission"
-                icon={PenSquareIcon}
-                onClick={() => {
-                  notify(`Editing permissions for "${row.moduleName}"`);
-                }}
-              />
-              <ActionButton
-                label="Delete Permission"
-                icon={Trash2}
-                variant="danger"
-                onClick={() => {
-                  notify(`Deleted permissions for "${row.moduleName}"`);
-                }}
-              />
-            </ActionButtonGroup>
-          )}
-        />
+        <PermissionTable />
       </div>
     </>
   );

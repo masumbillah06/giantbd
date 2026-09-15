@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { SidebarProvider } from "@/components/layout/sidebar-context";
+import { SidebarProvider } from "@/lib/providers/sidebar-context";
+import { ReactQueryProvider } from "@/lib/providers/react-query-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -23,7 +24,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${poppins.variable} ${poppins.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
-        <SidebarProvider>{children}</SidebarProvider>
+        <ReactQueryProvider>
+          <SidebarProvider>{children}</SidebarProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
