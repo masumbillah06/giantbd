@@ -3,7 +3,7 @@
 import Breadcrumb from "@/components/ui/breadcrumb";
 import TableToolbar from "@/components/ui/table-toolbar";
 import FilterCard from "@/components/ui/filter-card";
-import PaginatedTable from "@/components/ui/tables/paginated-table";
+import PaginatedTable from "@/components/ui/table/paginated-table";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
 import { Eye, FileText, Truck, Package } from "lucide-react";

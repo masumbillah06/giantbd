@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import Breadcrumb from "@/components/ui/breadcrumb";
 import TableToolbar from "@/components/ui/table-toolbar";
-import PaginatedTable from "@/components/ui/tables/paginated-table";
+import PaginatedTable from "@/components/ui/table/paginated-table";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { Eye, PenSquareIcon, Trash2 } from "lucide-react";

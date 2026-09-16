@@ -6,7 +6,7 @@ import { ChartPieDonut } from "@/features/dashboard/components/donut-chart";
 import { ChartLineMultiple } from "@/features/dashboard/components/line-chart";
 import { ChartPieSimple } from "@/features/dashboard/components/pie-chart";
 import StatCard from "@/features/dashboard/components/stat-card";
-import ReusableTable from "@/components/ui/tables/ReusableTable";
+import ReusableTable from "@/components/ui/table/ReusableTable";
 import {
   stockInData,
   stockInColumns,

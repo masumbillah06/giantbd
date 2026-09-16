@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { MatrixTable, type MatrixPeriodColumn } from "@/components/ui/tables/matrix-table";
+import { MatrixTable, type MatrixPeriodColumn } from "@/components/ui/table/matrix-table";
 import type { MonthInfo, MonthlyDeliveryItem } from "@/lib/mock-data/reports/monthly-delivery.mock";
 import type { WeekInfo, DeliveryItem } from "@/lib/mock-data/reports/weekly-delivery.mock";
 import { cn } from "@/lib/utils";

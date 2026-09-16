@@ -9,7 +9,7 @@ import type {
   SortConfig,
   SortDirection,
 } from "./ReusableTable.types";
-import Pagination from "@/components/ui/tables/pagination";
+import Pagination from "@/components/ui/table/pagination";
 import { useClientPagination } from "@/hooks/use-client-pagination";
 
 export interface PaginatedTableProps<

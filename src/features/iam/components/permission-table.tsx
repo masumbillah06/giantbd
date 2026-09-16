@@ -1,7 +1,7 @@
 "use client";
 
 import { PenSquareIcon, Trash2 } from "lucide-react";
-import PaginatedTable from "@/components/ui/tables/paginated-table";
+import PaginatedTable from "@/components/ui/table/paginated-table";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
 import { permissionColumns } from "@/lib/mock-data/iam/permission.mock";

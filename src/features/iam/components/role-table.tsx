@@ -1,10 +1,10 @@
 "use client";
 
 import { Eye, PenSquareIcon, Trash2 } from "lucide-react";
-import PaginatedTable from "@/components/ui/tables/paginated-table";
+import PaginatedTable from "@/components/ui/table/paginated-table";
 import { ActionButton } from "@/components/ui/buttons/action-button";
 import { ActionButtonGroup } from "@/components/ui/buttons/action-button-group";
-import type { ColumnDef } from "@/components/ui/tables/ReusableTable.types";
+import type { ColumnDef } from "@/components/ui/table/ReusableTable.types";
 import type { RoleRecord } from "../types/iam.types";
 import { useRoles } from "../hooks/use-iam";
 
